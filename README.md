@@ -31,13 +31,12 @@ The goal of this project is to create a **fast, responsive, and visually appeali
 
 ---
 
-## 📂 Project Structure
-Veriffy_app
+Veriffy_app/
 │
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+├── index.html 
+├── style.css 
+├── script.js # JavaScript 
+└── README.md 
 
 ---
 
