@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veriffy — Proof-of-Work Developer Platform</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ░░ PARTICLES BACKGROUND ░░ -->
+<div id="particles"></div>
+
+<!-- ░░ HEADER ░░ -->
+<header id="header">
+  <div class="header-inner">
+    <div class="logo" onclick="scrollToTop()">
+      <div class="logo-icon">✓</div>
+      <span class="logo-text">veriffy</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#dashboard" class="nav-a" data-i18n="nav_dashboard">Dashboard</a>
+      <a href="#profiles"  class="nav-a" data-i18n="nav_profiles">Developers</a>
+      <a href="#leaderboard" class="nav-a" data-i18n="nav_leaderboard">Leaderboard</a>
+      <a href="#upload"    class="nav-a" data-i18n="nav_upload">Upload</a>
+      <a href="#help"      class="nav-a" data-i18n="nav_help">Help</a>
+    </nav>
+    <div class="header-controls">
+      <select id="langSelect" onchange="switchLang(this.value)">
+        <option value="en">🌐 English</option>
+        <option value="hi">🌐 हिन्दी</option>
+        <option value="kn">🌐 ಕನ್ನಡ</option>
+      </select>
+      <button class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+      <button class="icon-btn" onclick="openSettings()" title="Settings">⚙</button>
+    </div>
+  </div>
+</header>
+
+<!-- ░░ HERO ░░ -->
+<section class="hero" id="heroSection">
+  <div class="hero-badge" data-i18n="hero_badge">✦ Proof-of-Work · Anti-AI-Fraud · Real Code Verified</div>
+  <h1 class="hero-title" data-i18n="hero_title">Resumes Lie.<br><span class="gradient-text">Code Doesn't.</span></h1>
+  <p class="hero-sub" data-i18n="hero_sub">Veriffy verifies developers through real commits, actual project complexity, and code authenticity — not polished PDFs.</p>
+</section>
+
+<!-- ░░ ══════════════════════════════════════════════════════
+     DEVELOPER VIEW
+══════════════════════════════════════════════════════ ░░ -->
+<div id="developerView" style="display:none">
+
+  <!-- DEV SEARCH -->
+  <section class="section" id="devSearch" style="padding-top:0">
+    <div class="search-bar-wrap" style="max-width:700px;margin:0 auto 16px">
+      <div class="search-bar glass">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by name, skill, location, specialty…" oninput="filterDevs()" data-i18n-placeholder="search_placeholder"/>
+        <button class="voice-btn" id="voiceBtn" onclick="startVoice()" title="Voice search">🎙</button>
+        <button class="btn-green" onclick="filterDevs()" data-i18n="btn_search">Search</button>
+      </div>
+      <div class="search-chips">
+        <span class="chip" onclick="quickSearch('Python')">Python</span>
+        <span class="chip" onclick="quickSearch('Flutter')">Flutter</span>
+        <span class="chip" onclick="quickSearch('Go')">Go</span>
+        <span class="chip" onclick="quickSearch('Verified')">✓ Verified</span>
+        <span class="chip chip-red" onclick="quickSearch('Fraud')">⚠ Fraud</span>
+        <span class="chip chip-yellow" onclick="quickSearch('Low Code')">📉 Low Code</span>
+      </div>
+    </div>
+    <!-- Dev search results (hidden until user searches) -->
+    <div id="devSearchResults" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto">
+        <span id="devSearchResultLabel" style="font-size:13px;color:var(--text3);font-weight:600"></span>
+        <button class="btn-outline" style="font-size:12px;padding:4px 12px" onclick="clearDevSearch()">✕ Clear</button>
+      </div>
+      <div class="profiles-grid" id="devSearchGrid"></div>
+    </div>
+  </section>
+
+  <!-- DEV PROJECT ANALYZER -->
+  <section class="section" id="devUpload">
+    <div class="section-header">
+      <h2 class="section-title">⬆ Project Analyzer</h2>
+      <span class="section-sub">Upload your GitHub project URL to get an instant credibility analysis and quiz</span>
+    </div>
+    <div class="upload-card glass">
+      <div class="upload-grid">
+        <div class="form-col">
+          <label class="form-lbl">Developer Name</label>
+          <input class="form-inp" id="uName" placeholder="e.g. Arjun Sharma"/>
+          <label class="form-lbl">GitHub URL</label>
+          <input class="form-inp" id="uUrl" placeholder="https://github.com/username/repo"/>
+          <label class="form-lbl">Primary Language</label>
+          <select class="form-inp" id="uLang">
+            <option>Python</option><option>JavaScript</option><option>TypeScript</option>
+            <option>Go</option><option>Rust</option><option>C++</option><option>Dart</option>
+            <option>Solidity</option><option>Java</option><option>C#</option>
+          </select>
+          <label class="form-lbl">Project Description</label>
+          <textarea class="form-inp" id="uDesc" rows="3" placeholder="Describe what this project does…"></textarea>
+          <button class="btn-green full-btn" id="analyzeBtn" onclick="analyzeProject()">⚡ Analyze & Start Quiz</button>
+        </div>
+        <div class="result-col" id="analyzeResult">
+          <div class="analyze-placeholder">
+            <div style="font-size:48px;">🔬</div>
+            <p>Fill in the details and click Analyze — the quiz will appear here immediately after scanning</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEV LEADERBOARD -->
+  <section class="section" id="devLeaderboard">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_leaderboard">🏆 Leaderboard</h2>
+      <span class="section-sub" data-i18n="sec_leaderboard_sub">Top 5 developers by credibility score</span>
+    </div>
+    <div class="leaderboard-wrap glass" id="leaderboardListDev"></div>
+  </section>
+
+  <!-- DEV ASK AI -->
+  <section class="section" id="devAsk">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_ask">🤖 Ask Veriffy AI</h2>
+      <span class="section-sub" data-i18n="sec_ask_sub">Ask anything about how Veriffy works</span>
+    </div>
+    <div class="chat-wrap glass">
+      <div class="chat-messages" id="chatMessagesDev">
+        <div class="chat-msg bot">
+          <div class="chat-avatar">✓</div>
+          <div class="chat-bubble">Hi Developer! I'm Veriffy AI. Ask me how credibility scoring works, how to get verified, or anything about this platform.</div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input class="form-inp" id="chatInputDev" placeholder="Ask a question…" onkeydown="if(event.key==='Enter')sendChatDev()"/>
+        <button class="icon-btn" onclick="startVoiceChatDev()" title="Voice input">🎙</button>
+        <button class="btn-green" onclick="sendChatDev()">Send</button>
+      </div>
+      <div class="chat-suggestions">
+        <span class="chip" onclick="askSuggestionDev(this)">How is credibility score calculated?</span>
+        <span class="chip" onclick="askSuggestionDev(this)">How do I get verified?</span>
+        <span class="chip" onclick="askSuggestionDev(this)">What is low code warning?</span>
+        <span class="chip" onclick="askSuggestionDev(this)">What does the quiz test?</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEV HELP -->
+  <section class="section" id="devHelp">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_help">❓ Help & FAQ</h2>
+    </div>
+    <div class="faq-grid" id="faqGridDev"></div>
+  </section>
+
+</div><!-- end developerView -->
+
+<!-- ░░ ══════════════════════════════════════════════════════
+     RECRUITER VIEW
+══════════════════════════════════════════════════════ ░░ -->
+<div id="recruiterView" style="display:none">
+
+  <!-- REC SEARCH -->
+  <section class="section" id="recSearch" style="padding-top:0">
+    <div class="search-bar-wrap" style="max-width:700px;margin:0 auto 16px">
+      <div class="search-bar glass">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInputRec" placeholder="Search developers by name, skill, location, specialty…" oninput="filterDevsRec()"/>
+        <button class="voice-btn" id="voiceBtnRec" onclick="startVoiceRec()" title="Voice search">🎙</button>
+        <button class="btn-green" onclick="filterDevsRec()">Search</button>
+      </div>
+      <div class="search-chips">
+        <span class="chip" onclick="quickSearchRec('Python')">Python</span>
+        <span class="chip" onclick="quickSearchRec('Flutter')">Flutter</span>
+        <span class="chip" onclick="quickSearchRec('Go')">Go</span>
+        <span class="chip" onclick="quickSearchRec('Verified')">✓ Verified</span>
+        <span class="chip chip-red" onclick="quickSearchRec('Fraud')">⚠ Fraud</span>
+        <span class="chip chip-yellow" onclick="quickSearchRec('Low Code')">📉 Low Code</span>
+      </div>
+    </div>
+    <!-- Recruiter quick search results (shown when searching, hides when cleared) -->
+    <div id="recSearchResults" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto">
+        <span id="recSearchResultLabel" style="font-size:13px;color:var(--text3);font-weight:600"></span>
+        <button class="btn-outline" style="font-size:12px;padding:4px 12px" onclick="clearRecSearch()">✕ Clear</button>
+      </div>
+      <div class="profiles-grid" id="recSearchGrid"></div>
+    </div>
+  </section>
+
+  <!-- REC STATS BAR -->
+  <section class="stats-bar">
+    <div class="stat-card glass">
+      <div class="stat-num" id="statTotal">20</div>
+      <div class="stat-lbl" data-i18n="stat_total">Total Developers</div>
+    </div>
+    <div class="stat-card glass">
+      <div class="stat-num green" id="statVerified">10</div>
+      <div class="stat-lbl" data-i18n="stat_verified">Verified</div>
+    </div>
+    <div class="stat-card glass">
+      <div class="stat-num yellow" id="statLow">5</div>
+      <div class="stat-lbl" data-i18n="stat_low">Low Code</div>
+    </div>
+    <div class="stat-card glass">
+      <div class="stat-num red" id="statFraud">2</div>
+      <div class="stat-lbl" data-i18n="stat_fraud">Fraud Detected</div>
+    </div>
+    <div class="stat-card glass">
+      <div class="stat-num cyan" id="statAvg">74</div>
+      <div class="stat-lbl" data-i18n="stat_avg">Avg. Score</div>
+    </div>
+  </section>
+
+  <!-- REC DASHBOARD CHARTS -->
+  <section class="section" id="dashboard">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_dashboard">📊 Recruiter Quick View</h2>
+      <span class="section-sub" data-i18n="sec_dashboard_sub">Real-time credibility analytics across all developers</span>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card glass">
+        <h4 class="chart-title" data-i18n="chart_dist">Score Distribution</h4>
+        <canvas id="chartDist"></canvas>
+      </div>
+      <div class="chart-card glass">
+        <h4 class="chart-title" data-i18n="chart_status">Developer Status Breakdown</h4>
+        <canvas id="chartStatus"></canvas>
+      </div>
+      <div class="chart-card glass">
+        <h4 class="chart-title" data-i18n="chart_loc">Activity by Commit Tier</h4>
+        <canvas id="chartCommit"></canvas>
+      </div>
+      <div class="chart-card glass">
+        <h4 class="chart-title" data-i18n="chart_spec">Top Specialties</h4>
+        <canvas id="chartSpec"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- REC LEADERBOARD -->
+  <section class="section" id="recLeaderboard">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_leaderboard">🏆 Leaderboard</h2>
+      <span class="section-sub" data-i18n="sec_leaderboard_sub">Top 5 developers by credibility score</span>
+    </div>
+    <div class="leaderboard-wrap glass" id="leaderboardListRec"></div>
+  </section>
+
+  <!-- REC DEVELOPER PROFILES -->
+  <section class="section" id="profiles">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_profiles">👨‍💻 Developer Profiles</h2>
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="applyFilter('all', this)" data-i18n="filter_all">All</button>
+        <button class="filter-btn" onclick="applyFilter('verified', this)" data-i18n="filter_verified">✓ Verified</button>
+        <button class="filter-btn" onclick="applyFilter('lowcode', this)" data-i18n="filter_low">📉 Low Code</button>
+        <button class="filter-btn" onclick="applyFilter('fraud', this)" data-i18n="filter_fraud">⚠ Fraud</button>
+      </div>
+    </div>
+    <div class="profiles-grid" id="profilesGrid"></div>
+  </section>
+
+  <!-- REC ASK AI -->
+  <section class="section" id="recAsk">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_ask">🤖 Ask Veriffy AI</h2>
+      <span class="section-sub" data-i18n="sec_ask_sub">Ask anything about how Veriffy works</span>
+    </div>
+    <div class="chat-wrap glass">
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg bot">
+          <div class="chat-avatar">✓</div>
+          <div class="chat-bubble" data-i18n="chat_intro">Hi Recruiter! I'm Veriffy AI. Ask me how credibility scoring works, how to spot fraud, or anything about finding verified talent.</div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input class="form-inp" id="chatInput" placeholder="Ask a question…" onkeydown="if(event.key==='Enter')sendChat()" data-i18n-placeholder="chat_placeholder"/>
+        <button class="icon-btn" onclick="startVoiceChat()" title="Voice input">🎙</button>
+        <button class="btn-green" onclick="sendChat()" data-i18n="btn_send">Send</button>
+      </div>
+      <div class="chat-suggestions">
+        <span class="chip" onclick="askSuggestion(this)">How is credibility score calculated?</span>
+        <span class="chip" onclick="askSuggestion(this)">What is fraud detection?</span>
+        <span class="chip" onclick="askSuggestion(this)">How do I use the recruiter dashboard?</span>
+        <span class="chip" onclick="askSuggestion(this)">What is low code warning?</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REC HELP -->
+  <section class="section" id="recHelp">
+    <div class="section-header">
+      <h2 class="section-title" data-i18n="sec_help">❓ Help & FAQ</h2>
+    </div>
+    <div class="faq-grid" id="faqGrid"></div>
+  </section>
+
+</div><!-- end recruiterView -->
+
+<!-- ░░ INTERVIEW MODAL ░░ -->
+<div id="interviewOverlay">
+  <div id="interviewBox">
+    <div id="ivHeader">
+      <div class="iv-logo"><div class="logo-icon" style="width:26px;height:26px;font-size:13px">✓</div><span class="logo-text" style="font-size:17px">veriffy</span></div>
+      <div id="ivTitle">Project Verification Interview</div>
+      <div id="ivWarningBadge">🔒 PROCTORED</div>
+    </div>
+    <div id="ivProgress"><div id="ivProgressBar"></div></div>
+    <div id="ivMeta">
+      <div id="ivDevInfo"></div>
+      <div id="ivQCounter"></div>
+      <div id="ivTimerWrap"><span id="ivTimerLabel">Time left:</span><span id="ivTimer">60</span>s</div>
+    </div>
+    <div id="ivBody">
+      <div id="ivQuestionType"></div>
+      <div id="ivQuestion"></div>
+      <div id="ivCodeBlock" style="display:none"><pre id="ivCode"></pre></div>
+      <div id="ivOptions"></div>
+      <div id="ivTextArea" style="display:none">
+        <textarea id="ivAnswer" placeholder="Type your answer here…" rows="5"></textarea>
+      </div>
+    </div>
+    <div id="ivFooter">
+      <div id="ivScore">Score: <span id="ivScoreNum">0</span> / <span id="ivScoreTotal">0</span></div>
+      <button class="btn-outline" id="ivSkipBtn" onclick="ivSkip()">Skip →</button>
+      <button class="btn-green" id="ivSubmitBtn" onclick="ivSubmit()">Submit Answer</button>
+    </div>
+    <div id="ivTabWarning">⚠ Tab switch detected! Return immediately or session will be terminated.</div>
+  </div>
+</div>
+
+<!-- ░░ INTERVIEW RESULT MODAL ░░ -->
+<div id="ivResultOverlay" style="display:none">
+  <div id="ivResultBox" class="glass">
+    <div id="ivResultHeader"></div>
+    <div id="ivResultBody"></div>
+    <button class="btn-green full-btn" onclick="closeInterview()" style="margin-top:20px">✓ Back to Platform</button>
+  </div>
+</div>
+
+<!-- ░░ SIGN IN PAGE (overlay) ░░ -->
+<div id="signInOverlay" class="modal-overlay open" onclick="">
+  <div id="signInBox" class="glass">
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px">
+        <div class="logo-icon" style="width:40px;height:40px;font-size:20px">✓</div>
+        <span class="logo-text" style="font-size:26px">veriffy</span>
+      </div>
+      <p style="color:var(--text3);font-size:13px" id="signInSub">Proof-of-Work Developer Platform</p>
+    </div>
+
+    <!-- STEP 1: Role Selection -->
+    <div id="roleSelectStep">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px">I am joining as a…</div>
+        <div style="font-size:13px;color:var(--text3)">Choose your role to get a personalised experience</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+        <div class="role-card" id="roleCardDev" onclick="selectRole('developer')">
+          <div style="font-size:36px;margin-bottom:10px">👨‍💻</div>
+          <div style="font-weight:800;font-size:15px;color:var(--text);margin-bottom:4px">Developer</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.5">Verify your skills, build credibility, get hired</div>
+        </div>
+        <div class="role-card" id="roleCardRec" onclick="selectRole('recruiter')">
+          <div style="font-size:36px;margin-bottom:10px">🏢</div>
+          <div style="font-weight:800;font-size:15px;color:var(--text);margin-bottom:4px">Recruiter</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.5">Find verified talent, spot fraud, hire confidently</div>
+        </div>
+      </div>
+      <button class="btn-green full-btn" id="roleNextBtn" onclick="proceedToAuth()" style="opacity:.4;pointer-events:none">Continue →</button>
+    </div>
+
+    <!-- STEP 2: Auth Forms -->
+    <div id="authStep" style="display:none">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;cursor:pointer;width:fit-content" onclick="backToRoleSelect()">
+        <span style="color:var(--text3);font-size:13px">← Back</span>
+      </div>
+      <div id="selectedRoleBanner" style="display:flex;align-items:center;gap:10px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:10px;padding:10px 14px;margin-bottom:18px">
+        <span id="selectedRoleIcon" style="font-size:22px"></span>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:var(--green)" id="selectedRoleLabel"></div>
+          <div style="font-size:11px;color:var(--text3)" id="selectedRoleDesc"></div>
+        </div>
+      </div>
+      <div id="signInTabs">
+        <button class="sign-tab active" id="tabLogin" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="sign-tab" id="tabRegister" onclick="switchAuthTab('register')">Register</button>
+      </div>
+      <!-- LOGIN -->
+      <div id="loginForm">
+        <div class="form-group">
+          <label class="form-lbl">Email</label>
+          <input class="form-inp" id="loginEmail" type="email" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Password</label>
+          <div style="position:relative">
+            <input class="form-inp" id="loginPass" type="password" placeholder="••••••••" style="padding-right:44px"/>
+            <button class="pwd-eye" onclick="togglePwd('loginPass',this)">👁</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);cursor:pointer">
+            <input type="checkbox" id="rememberMe"/> Remember me
+          </label>
+          <span style="font-size:12px;color:var(--green);cursor:pointer" onclick="showToast('Password reset email sent!','info')">Forgot password?</span>
+        </div>
+        <button class="btn-green full-btn" onclick="doSignIn()">Sign In →</button>
+        <div class="or-divider"><span>or continue with</span></div>
+        <div style="display:flex;gap:10px">
+          <button class="social-btn" onclick="doSocialLogin('GitHub')"><span>🐙</span> GitHub</button>
+          <button class="social-btn" onclick="doSocialLogin('Google')"><span>🔵</span> Google</button>
+        </div>
+      </div>
+      <!-- REGISTER -->
+      <div id="registerForm" style="display:none">
+        <div class="reg-row">
+          <div class="form-group">
+            <label class="form-lbl">Full Name</label>
+            <input class="form-inp" id="regName" placeholder="Arjun Sharma"/>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Role</label>
+            <select class="form-inp" id="regRole">
+              <option value="developer">Developer</option>
+              <option value="recruiter">Recruiter</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Email</label>
+          <input class="form-inp" id="regEmail" type="email" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">Password</label>
+          <div style="position:relative">
+            <input class="form-inp" id="regPass" type="password" placeholder="Min 8 characters" style="padding-right:44px"/>
+            <button class="pwd-eye" onclick="togglePwd('regPass',this)">👁</button>
+          </div>
+          <div id="pwdStrength" style="margin-top:6px"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl">GitHub Username (optional)</label>
+          <input class="form-inp" id="regGithub" placeholder="username"/>
+        </div>
+        <button class="btn-green full-btn" onclick="doRegister()">Create Account →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="footer">
+  <div class="logo" style="justify-content:center">
+    <div class="logo-icon" style="width:28px;height:28px;font-size:14px">✓</div>
+    <span class="logo-text">veriffy</span>
+  </div>
+  <p style="color:var(--text3);font-size:13px;margin-top:8px">Built for the future of fair hiring · 2025</p>
+</footer>
+
+<!-- ░░ MODALS ░░ -->
+<!-- Dev Detail Modal -->
+<div class="modal-overlay" id="devModal" onclick="closeDevModal(event)">
+  <div class="modal glass" id="devModalContent"></div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settingsModal" onclick="closeSettings(event)">
+  <div class="modal glass" style="max-width:460px" id="settingsContent">
+    <div class="modal-header">
+      <h3>⚙ Settings</h3>
+      <button class="icon-btn" onclick="document.getElementById('settingsModal').classList.remove('open')">×</button>
+    </div>
+    <div class="settings-list">
+      <div class="settings-item">
+        <span>🌙 Dark / Light Mode</span>
+        <button class="btn-green btn-sm" onclick="toggleTheme()" id="themeSettingBtn">Toggle</button>
+      </div>
+      <div class="settings-item">
+        <span>🌐 Language</span>
+        <select id="langSelect2" onchange="switchLang(this.value);document.getElementById('langSelect').value=this.value">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="kn">ಕನ್ನಡ</option>
+        </select>
+      </div>
+      <div class="settings-item">
+        <span>🔔 Notifications</span>
+        <label class="toggle-switch"><input type="checkbox" checked/><span class="slider"></span></label>
+      </div>
+      <div class="settings-item">
+        <span>🔒 Privacy Mode</span>
+        <label class="toggle-switch"><input type="checkbox"/><span class="slider"></span></label>
+      </div>
+      <div class="settings-item">
+        <span>📊 Auto-refresh Dashboard</span>
+        <label class="toggle-switch"><input type="checkbox" checked/><span class="slider"></span></label>
+      </div>
+      <div class="settings-item">
+        <span>🚨 Fraud Alerts</span>
+        <label class="toggle-switch"><input type="checkbox" checked/><span class="slider"></span></label>
+      </div>
+      <div class="settings-item">
+        <span data-i18n="nav_help">Help & Support</span>
+        <button class="btn-green btn-sm" onclick="openHelpFromSettings()">Open</button>
+      </div>
+      <div class="settings-item">
+        <span>🚪 Sign Out</span>
+        <button class="btn-danger btn-sm" onclick="doSignOut()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toastContainer"></div>
+
+<!-- ░░ PROJECT QUIZ OVERLAY ░░ -->
+<div id="quizOverlay">
+  <div id="quizBox">
+
+    <!-- Header -->
+    <div id="quizHeader">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="logo-icon" style="width:28px;height:28px;font-size:14px">✓</div>
+        <span style="font-weight:900;font-size:15px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">veriffy</span>
+      </div>
+      <div id="quizTitle">Project Verification Quiz</div>
+      <div id="quizProctored">🔒 PROCTORED</div>
+    </div>
+
+    <!-- Progress bar -->
+    <div id="quizProgressTrack"><div id="quizProgressBar"></div></div>
+
+    <!-- Meta row -->
+    <div id="quizMeta">
+      <div id="quizDevLabel"></div>
+      <div id="quizQNum" class="mono"></div>
+      <div id="quizTimerPill">
+        <span style="font-size:11px;color:var(--text3);font-weight:700">TIME</span>
+        <span id="quizTimerVal">60</span>
+        <span style="font-size:11px;color:var(--text3)">s</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div id="quizBody">
+      <div id="quizTypeBadge"></div>
+      <div id="quizQuestion"></div>
+      <div id="quizCodeWrap"><pre id="quizCode"></pre></div>
+      <div id="quizOptions"></div>
+      <div id="quizTextWrap"><textarea id="quizTextAns" placeholder="Type your detailed answer here…" rows="5"></textarea></div>
+    </div>
+
+    <!-- Footer -->
+    <div id="quizFooter">
+      <div id="quizLiveScore">Score: <span id="quizScoreNum">0</span>/<span id="quizScoreOf">0</span></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn-outline" onclick="quizSkip()">Skip ›</button>
+        <button class="btn-green" onclick="quizSubmit()">Submit Answer</button>
+      </div>
+    </div>
+
+    <!-- Tab-switch warning banner -->
+    <div id="quizTabBanner">⚠ Tab switch detected! Return immediately — session may be terminated.</div>
+  </div>
+</div>
+
+<!-- ░░ QUIZ RESULT OVERLAY ░░ -->
+<div id="quizResultOverlay">
+  <div id="quizResultBox" class="glass">
+    <div id="quizResultInner"></div>
+    <div style="display:flex;gap:12px;margin-top:20px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-green" id="quizResultPrimaryBtn"></button>
+      <button class="btn-outline" onclick="closeQuiz()">✕ Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
