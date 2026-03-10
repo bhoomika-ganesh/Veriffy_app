@@ -1,5 +1,10 @@
 # ✔️ Veriffy – Smart Verification Web App
 
+## 🌐 Live Project
+https://bhoomika-ganesh.github.io/Veriffy_app/
+
+---
+
 ## 📌 Project Overview
 **Veriffy** is a modern web application designed to verify information quickly and efficiently.  
 The platform helps users check and validate inputs using a clean, interactive, and user-friendly interface.
@@ -27,6 +32,12 @@ The goal of this project is to create a **fast, responsive, and visually appeali
 ---
 
 ## 📂 Project Structure
+Veriffy_app
+│
+├── index.html
+├── style.css
+├── script.js
+└── README.md
 
 ---
 
