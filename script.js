@@ -10,7 +10,7 @@
    loc: lines of code (thousands)
    commits: # of commits
 ═══════════════════════════════════════════════════════ */
-const DEVS = [
+let DEVS = [
   {
     id:1, name:"Arjun Sharma", initials:"AS", color:"#22c55e",
     title:"Full-Stack Engineer", location:"Bangalore, KA",
@@ -252,7 +252,7 @@ const I18N = {
     sec_upload:"⬆ Project Analyzer", sec_upload_sub:"Upload a project URL to get an instant credibility report",
     lbl_devname:"Developer Name", lbl_github:"GitHub URL", lbl_lang:"Primary Language", lbl_desc:"Project Description",
     analyze_wait:"Fill in the details and click Analyze to see the credibility report",
-    sec_leaderboard:"🏆 Leaderboard", sec_leaderboard_sub:"Top 5 developers by credibility score",
+    sec_leaderboard:"🏆 Leaderboard", sec_leaderboard_sub:"Developers ranked by credibility score",
     sec_profiles:"👨‍💻 Developer Profiles",
     filter_all:"All", filter_verified:"✓ Verified", filter_low:"📉 Low Code", filter_fraud:"⚠ Fraud",
     sec_ask:"🤖 Ask Veriffy AI", sec_ask_sub:"Ask anything about how Veriffy works",
@@ -275,7 +275,7 @@ const I18N = {
     sec_upload:"⬆ प्रोजेक्ट विश्लेषक", sec_upload_sub:"तत्काल रिपोर्ट के लिए GitHub लिंक डालें",
     lbl_devname:"डेवलपर नाम", lbl_github:"GitHub URL", lbl_lang:"प्रमुख भाषा", lbl_desc:"प्रोजेक्ट विवरण",
     analyze_wait:"विवरण भरें और विश्लेषण पर क्लिक करें",
-    sec_leaderboard:"🏆 लीडरबोर्ड", sec_leaderboard_sub:"स्कोर के अनुसार शीर्ष 5",
+    sec_leaderboard:"🏆 लीडरबोर्ड", sec_leaderboard_sub:"स्कोर के अनुसार डेवलपर रैंकिंग",
     sec_profiles:"👨‍💻 डेवलपर प्रोफाइल",
     filter_all:"सभी", filter_verified:"✓ सत्यापित", filter_low:"📉 कम कोड", filter_fraud:"⚠ धोखाधड़ी",
     sec_ask:"🤖 Veriffy AI से पूछें", sec_ask_sub:"प्लेटफ़ॉर्म के बारे में कुछ भी पूछें",
@@ -298,7 +298,7 @@ const I18N = {
     sec_upload:"⬆ ಪ್ರಾಜೆಕ್ಟ್ ವಿಶ್ಲೇಷಕ", sec_upload_sub:"ತಕ್ಷಣದ ವಿಶ್ವಾಸಾರ್ಹತೆ ವರದಿಗಾಗಿ GitHub ಲಿಂಕ್ ನಮೂದಿಸಿ",
     lbl_devname:"ಡೆವಲಪರ್ ಹೆಸರು", lbl_github:"GitHub URL", lbl_lang:"ಪ್ರಾಥಮಿಕ ಭಾಷೆ", lbl_desc:"ಪ್ರಾಜೆಕ್ಟ್ ವಿವರಣೆ",
     analyze_wait:"ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ ಮತ್ತು ವಿಶ್ಲೇಷಣೆ ಕ್ಲಿಕ್ ಮಾಡಿ",
-    sec_leaderboard:"🏆 ಲೀಡರ್‌ಬೋರ್ಡ್", sec_leaderboard_sub:"ಅಗ್ರ 5 ಡೆವಲಪರ್‌ಗಳು",
+    sec_leaderboard:"🏆 ಲೀಡರ್‌ಬೋರ್ಡ್", sec_leaderboard_sub:"ಸ್ಕೋರ್ ಪ್ರಕಾರ ಡೆವಲಪರ್‌ಗಳ ಶ್ರೇಯಾಂಕ",
     sec_profiles:"👨‍💻 ಡೆವಲಪರ್ ಪ್ರೊಫೈಲ್‌ಗಳು",
     filter_all:"ಎಲ್ಲಾ", filter_verified:"✓ ಪರಿಶೀಲಿಸಲಾಗಿದೆ", filter_low:"📉 ಕಡಿಮೆ ಕೋಡ್", filter_fraud:"⚠ ವಂಚನೆ",
     sec_ask:"🤖 Veriffy AI ಕೇಳಿ", sec_ask_sub:"ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಬಗ್ಗೆ ಏನನ್ನಾದರೂ ಕೇಳಿ",
@@ -308,6 +308,400 @@ const I18N = {
   }
 };
 let currentLang = 'en';
+
+// Full-page translations for text that is not in the original data-i18n table.
+// Product names, names, code, and programming-language identifiers stay unchanged.
+const PAGE_TEXT_I18N = {
+  hi: {
+    'Toggle theme':'थीम बदलें','Settings':'सेटिंग्स','Voice search':'आवाज़ से खोजें','Voice input':'आवाज़ से लिखें',
+    'Python':'Python','Flutter':'Flutter','Go':'Go','✓ Verified':'✓ सत्यापित','⚠ Fraud':'⚠ धोखाधड़ी','📉 Low Code':'📉 कम कोड',
+    '✕ Clear':'✕ साफ़ करें','⬆ Project Analyzer':'⬆ प्रोजेक्ट विश्लेषक','Upload your GitHub project URL to get an instant credibility analysis and quiz':'अपने GitHub प्रोजेक्ट का तुरंत विश्लेषण और प्रश्नोत्तरी पाने के लिए उसका URL डालें',
+    'Developer Name':'डेवलपर का नाम','GitHub URL':'GitHub URL','Primary Language':'मुख्य प्रोग्रामिंग भाषा','Project Description':'प्रोजेक्ट का विवरण',
+    'e.g. Arjun Sharma':'जैसे अर्जुन शर्मा','Describe what this project does…':'बताएँ कि यह प्रोजेक्ट क्या करता है…','⚡ Analyze & Start Quiz':'⚡ विश्लेषण करें और प्रश्नोत्तरी शुरू करें',
+    'Fill in the details and click Analyze — the quiz will appear here immediately after scanning':'विवरण भरें और विश्लेषण पर क्लिक करें — इसके बाद प्रश्नोत्तरी यहाँ दिखाई देगी',
+    'Top developers by credibility score':'विश्वसनीयता स्कोर के अनुसार शीर्ष डेवलपर','How is credibility score calculated?':'विश्वसनीयता स्कोर कैसे तय होता है?',
+    'How do I get verified?':'मैं सत्यापित कैसे हो सकता/सकती हूँ?','What is low code warning?':'कम कोड चेतावनी क्या है?',
+    'What does the quiz test?':'प्रश्नोत्तरी में क्या पूछा जाता है?','Search developers by name, skill, location, specialty…':'नाम, कौशल, स्थान या विशेषज्ञता से डेवलपर खोजें…',
+    'Search':'खोजें','✕ Clear':'✕ साफ़ करें','Total Developers':'कुल डेवलपर','Verified':'सत्यापित','Low Code':'कम कोड',
+    'Fraud Detected':'धोखाधड़ी का पता चला','Avg. Score':'औसत स्कोर','📊 Recruiter Quick View':'📊 भर्ती त्वरित दृश्य',
+    'Real-time credibility analytics across all developers':'सभी डेवलपर का विश्वसनीयता विश्लेषण','Score Distribution':'स्कोर का वितरण',
+    'Developer Status Breakdown':'डेवलपर स्थिति का विवरण','Activity by Commit Tier':'कमिट स्तर के अनुसार गतिविधि','Top Specialties':'शीर्ष विशेषज्ञताएँ',
+    '👨‍💻 Developer Profiles':'👨‍💻 डेवलपर प्रोफ़ाइल','All':'सभी','🤖 Ask Veriffy AI':'🤖 Veriffy AI से पूछें',
+    'Ask anything about how Veriffy works':'Veriffy कैसे काम करता है, कुछ भी पूछें','Hi Recruiter! I\'m Veriffy AI. Ask me how credibility scoring works, how to spot fraud, or anything about finding verified talent.':'नमस्ते भर्ती करने वाले! मैं Veriffy AI हूँ। स्कोर, धोखाधड़ी की पहचान या सही प्रतिभा खोजने के बारे में पूछें।',
+    'Hi Developer! I\'m Veriffy AI. Ask me how credibility scoring works, how to get verified, or anything about this platform.':'नमस्ते डेवलपर! मैं Veriffy AI हूँ। स्कोर, सत्यापन या इस प्लेटफ़ॉर्म के बारे में पूछें।',
+    'Ask a question…':'अपना प्रश्न लिखें…','Send':'भेजें','What is fraud detection?':'धोखाधड़ी की पहचान क्या है?',
+    'How do I use the recruiter dashboard?':'भर्ती डैशबोर्ड कैसे इस्तेमाल करें?','What does the quiz test?':'प्रश्नोत्तरी में क्या पूछा जाता है?',
+    'How is credibility score calculated?':'विश्वसनीयता स्कोर कैसे तय होता है?','How do I get verified?':'सत्यापित कैसे हों?',
+    'How is fraud detection done?':'धोखाधड़ी की पहचान कैसे होती है?','How is credibility scoring calculated?':'विश्वसनीयता स्कोर कैसे तय होता है?',
+    'What is low code warning?':'कम कोड चेतावनी क्या है?','❓ Help & FAQ':'❓ सहायता और सामान्य प्रश्न',
+    'Project Verification Interview':'प्रोजेक्ट सत्यापन साक्षात्कार','🔒 PROCTORED':'🔒 निगरानी में','Time left:':'शेष समय:',
+    'Type your answer here…':'अपना उत्तर यहाँ लिखें…','Score:':'स्कोर:','Skip →':'छोड़ें →','Submit Answer':'उत्तर जमा करें',
+    '⚠ Tab switch detected! Return immediately or session will be terminated.':'⚠ टैब बदलने का पता चला! तुरंत लौटें, वरना सत्र समाप्त हो जाएगा।',
+    '✓ Back to Platform':'✓ प्लेटफ़ॉर्म पर लौटें','Proof-of-Work Developer Platform':'काम के प्रमाण पर आधारित डेवलपर प्लेटफ़ॉर्म',
+    'I am joining as a…':'मैं इस भूमिका में जुड़ रहा/रही हूँ…','Choose your role to get a personalised experience':'अपना अनुभव चुनने के लिए भूमिका चुनें',
+    'Developer':'डेवलपर','Verify your skills, build credibility, get hired':'अपने कौशल सत्यापित करें, भरोसा बनाएँ और नौकरी पाएँ',
+    'Recruiter':'भर्ती प्रबंधक','Find verified talent, spot fraud, hire confidently':'सत्यापित प्रतिभा खोजें, धोखाधड़ी पहचानें और भरोसे से नियुक्त करें',
+    'Continue →':'आगे बढ़ें →','← Back':'← वापस','Sign In':'साइन इन','Register':'पंजीकरण','Email':'ईमेल','Password':'पासवर्ड',
+    'Remember me':'मुझे याद रखें','Forgot password?':'पासवर्ड भूल गए?','Sign In →':'साइन इन →','or continue with':'या इसके साथ जारी रखें',
+    'Full Name':'पूरा नाम','Role':'भूमिका','Min 8 characters':'कम से कम 8 अक्षर','GitHub Username (optional)':'GitHub उपयोगकर्ता नाम (वैकल्पिक)',
+    'Create Account →':'खाता बनाएँ →','Built for the future of fair hiring · 2025':'निष्पक्ष भर्ती के भविष्य के लिए बनाया गया · 2025',
+    '⚙ Settings':'⚙ सेटिंग्स','🌙 Dark / Light Mode':'🌙 गहरी / हल्की थीम','Toggle':'बदलें','🌐 Language':'🌐 भाषा',
+    '🔔 Notifications':'🔔 सूचनाएँ','🔒 Privacy Mode':'🔒 गोपनीयता मोड','📊 Auto-refresh Dashboard':'📊 डैशबोर्ड अपने आप अपडेट करें',
+    '🚨 Fraud Alerts':'🚨 धोखाधड़ी चेतावनियाँ','Help & Support':'सहायता और समर्थन','Open':'खोलें','🚪 Sign Out':'🚪 साइन आउट','Sign Out':'साइन आउट',
+    'Project Verification Quiz':'प्रोजेक्ट सत्यापन प्रश्नोत्तरी','🔒 PROCTORED':'🔒 निगरानी में','TIME':'समय','s':'सेकंड',
+    'Skip ›':'छोड़ें ›','✕ Close':'✕ बंद करें','⚠ Tab switch detected! Return immediately — session may be terminated.':'⚠ टैब बदलने का पता चला! तुरंत लौटें, वरना सत्र समाप्त हो जाएगा。',
+    'Verification Passed':'सत्यापन सफल','Verification Denied':'सत्यापन असफल','Correct':'सही','Incorrect':'गलत','Timed out':'समय समाप्त','Skipped':'छोड़ा गया',
+    'No developers found':'कोई डेवलपर नहीं मिला','Try a different search or filter.':'दूसरी खोज या फ़िल्टर आज़माएँ。','View Profile':'प्रोफ़ाइल देखें','Verify':'सत्यापित करें','🎯 Interview':'🎯 साक्षात्कार',
+    'Credibility':'विश्वसनीयता','Projects':'प्रोजेक्ट','Lines of Code':'कोड की पंक्तियाँ','Commits':'कमिट','Stars':'स्टार','YoE':'अनुभव वर्ष',
+    'Commit Heatmap (Last 30 Days)':'पिछले 30 दिनों के कमिट','Projects':'प्रोजेक्ट','FRAUD ACCOUNT DETECTED':'धोखाधड़ी वाला खाता मिला',
+    'Zero real commit history. Claims are fabricated. Do not proceed.':'कोई वास्तविक कमिट इतिहास नहीं। दावे झूठे हैं। आगे न बढ़ें।',
+    'Preparing demo quiz…':'डेमो प्रश्नोत्तरी तैयार हो रही है…','This demo does not fetch or analyze GitHub repository data.':'यह डेमो GitHub रिपॉज़िटरी का डेटा नहीं पढ़ता या उसका विश्लेषण नहीं करता।',
+    'Preparing demo estimate…':'डेमो अनुमान तैयार हो रहा है…','Demo only: this page does not connect to GitHub or inspect repository data.':'केवल डेमो: यह पेज GitHub से जुड़कर रिपॉज़िटरी की जाँच नहीं करता।',
+    'Demo estimate':'डेमो अनुमान','Verification Report':'सत्यापन रिपोर्ट','✓ Verification Passed':'✓ सत्यापन सफल','✕ Verification Denied':'✕ सत्यापन असफल',
+    '✓ Developer Verified on Veriffy':'✓ Veriffy पर डेवलपर सत्यापित','✓ Officially Verified on Veriffy':'✓ Veriffy पर आधिकारिक रूप से सत्यापित',
+    '✕ Does not meet verification threshold (50%)':'✕ सत्यापन के लिए 50% अंक आवश्यक हैं','✕ Cannot be verified — needs more practice':'✕ सत्यापन नहीं हुआ — और अभ्यास करें',
+    'Below the 50% threshold — verification denied':'50% से कम — सत्यापन असफल','Meets the 50% verification threshold':'50% सत्यापन सीमा पूरी हुई',
+    '✓ Done — Close':'✓ पूरा — बंद करें','↺ Close & Retry':'↺ बंद करें और फिर कोशिश करें','✓ Back to Platform':'✓ प्लेटफ़ॉर्म पर लौटें',
+    'https://github.com/username/repo':'https://github.com/username/repo','you@example.com':'आपका ईमेल','Arjun Sharma':'अर्जुन शर्मा','username':'उपयोगकर्ता नाम',
+    'How is credibility score calculated?':'विश्वसनीयता स्कोर कैसे तय होता है?','What is fraud detection?':'धोखाधड़ी की पहचान क्या है?',
+    'What does \'Low Code\' mean?':'“कम कोड” का क्या अर्थ है?','Can I use Veriffy as a recruiter?':'क्या मैं Veriffy को भर्ती के लिए इस्तेमाल कर सकता/सकती हूँ?',
+    'Is voice search available?':'क्या आवाज़ से खोज उपलब्ध है?','What does the Project Analyzer do?':'प्रोजेक्ट विश्लेषक क्या करता है?',
+    'How does the leaderboard work?':'लीडरबोर्ड कैसे काम करता है?',
+    'The credibility score (0–100) is based on total lines of code, commit frequency, project count, GitHub stars, and code complexity analysis. Developers with consistent contributions over time score higher.':'विश्वसनीयता स्कोर (0–100) कोड पंक्तियों, कमिट आवृत्ति, प्रोजेक्ट संख्या, GitHub स्टार और कोड जटिलता पर आधारित है। नियमित योगदान करने वालों का स्कोर अधिक होता है।',
+    'Fraud detection flags accounts that claim high experience but have near-zero commit history, unrealistically inflated project stats, or no verifiable GitHub presence. These are highlighted in red with a ⚠ badge.':'धोखाधड़ी पहचान उन खातों को चिह्नित करती है जिनका अनुभव बड़ा दावा है लेकिन कमिट लगभग नहीं हैं, आँकड़े अवास्तविक हैं या GitHub मौजूदगी सत्यापित नहीं है। ऐसे खाते लाल रंग में दिखते हैं।',
+    'A developer is tagged Low Code when they have fewer than 20K lines of verified code or very few commits relative to their claimed experience. This is a caution flag, not a disqualifier.':'20 हज़ार से कम सत्यापित कोड पंक्तियों या अनुभव के मुकाबले बहुत कम कमिट होने पर डेवलपर को “कम कोड” कहा जाता है। यह चेतावनी है, अयोग्यता नहीं।',
+    "Link your GitHub account and upload at least 3 projects. Veriffy's engine will analyse your commit history, code authorship, and project complexity. Scores above 75 with consistent activity get the Verified badge.":'अपना GitHub जोड़ें और कम से कम 3 प्रोजेक्ट डालें। Veriffy कमिट इतिहास, कोड लेखन और प्रोजेक्ट जटिलता देखता है। नियमित गतिविधि के साथ 75 से अधिक स्कोर पर सत्यापित बैज मिलता है।',
+    'Yes! The Recruiter Quick View dashboard gives you an instant visual breakdown of all candidates — verified, low code, and fraud flagged — so you can shortlist in seconds.':'हाँ! भर्ती डैशबोर्ड उम्मीदवारों को सत्यापित, कम कोड और धोखाधड़ी संकेतों में दिखाता है, ताकि आप जल्दी सूची बना सकें।',
+    'Yes. Click the 🎙 microphone button next to the search bar. Veriffy uses the Web Speech API to transcribe your voice query and search developers instantly.':'हाँ। खोज पट्टी के पास 🎙 माइक्रोफ़ोन दबाएँ। Veriffy आपकी आवाज़ को खोज में बदलकर डेवलपर ढूँढता है।',
+    'The Project Analyzer takes a GitHub URL and developer details to simulate a credibility analysis — scoring code complexity, commit depth, and authenticity using an in-browser algorithm.':'प्रोजेक्ट विश्लेषक GitHub URL और डेवलपर विवरण लेकर विश्वसनीयता का डेमो अनुमान दिखाता है। यह स्रोत कोड नहीं पढ़ता।',
+    'The leaderboard ranks the top 5 developers by their credibility score. It updates in real time as you filter or search developers.':'लीडरबोर्ड विश्वसनीयता स्कोर के अनुसार डेवलपरों को क्रम देता है और खोज या फ़िल्टर पर अपडेट होता है।',
+    'Which keyword starts a function?':'फ़ंक्शन शुरू करने वाला कीवर्ड कौन सा है?','Which value means “no value”?':'कौन सा मान “कोई मान नहीं” दर्शाता है?',
+    'Which collection stores unique items?':'कौन सा संग्रह अलग-अलग मान रखता है?','Which keyword creates a block-scoped constant?':'ब्लॉक-सीमित स्थिर मान के लिए कौन सा कीवर्ड है?',
+    'Which method converts JSON text to an object?':'JSON पाठ को ऑब्जेक्ट में कौन सा तरीका बदलता है?','Which value means “not assigned”?':'कौन सा मान “अभी तय नहीं” दर्शाता है?',
+    'Which type represents text?':'पाठ के लिए कौन सा प्रकार है?','What does `?` mean on a property?':'प्रॉपर्टी में `?` का क्या अर्थ है?',
+    'Which type accepts any string or number?':'कौन सा प्रकार पाठ या संख्या स्वीकार करता है?','Which operator starts a short variable declaration?':'संक्षिप्त वैरिएबल घोषणा किस चिन्ह से शुरू होती है?',
+    'What does `defer` do?':'`defer` क्या करता है?','Which keyword handles an error value?':'त्रुटि मान की जाँच किससे होती है?',
+    'Which keyword declares an immutable variable?':'अपरिवर्तनीय वैरिएबल का कीवर्ड कौन सा है?','What does `Option` represent?':'`Option` क्या दर्शाता है?',
+    'What does `mut` allow?':'`mut` क्या करने देता है?','Which keyword declares a value set once?':'एक बार तय मान के लिए कौन सा कीवर्ड है?',
+    'Which widget arranges children vertically?':'बच्चों को लंबवत सजाने वाला विजेट कौन सा है?','Which method builds a Flutter widget?':'Flutter विजेट बनाने वाला तरीका कौन सा है?',
+    'Which keyword creates an object?':'ऑब्जेक्ट बनाने का कीवर्ड कौन सा है?','Which collection stores unique values?':'अलग-अलग मान रखने वाला संग्रह कौन सा है?',
+    'Which block handles an exception?':'अपवाद संभालने वाला ब्लॉक कौन सा है?','Which type represents true or false?':'सही या गलत के लिए कौन सा प्रकार है?',
+    'Which container is a dynamic array?':'डायनामिक ऐरे के लिए कौन सा कंटेनर है?','Which symbol accesses a pointer member?':'पॉइंटर सदस्य तक पहुँचने का चिन्ह कौन सा है?',
+    'Which keyword makes a value immutable?':'कौन सा कीवर्ड मान को अपरिवर्तनीय बनाता है?','Which visibility limits access to this contract?':'कॉन्ट्रैक्ट तक पहुँच सीमित करने वाला स्तर कौन सा है?',
+    'Which keyword marks a function as read-only?':'फ़ंक्शन को केवल पढ़ने योग्य कौन सा कीवर्ड बनाता है?','Where should a contract’s persistent data live?':'कॉन्ट्रैक्ट का स्थायी डेटा कहाँ रहता है?',
+    'How should passwords be stored?':'पासवर्ड कैसे संग्रहीत करने चाहिए?','What status code fits invalid input?':'गलत इनपुट के लिए कौन सा स्थिति कोड है?',
+    'What makes a database row uniquely identifiable?':'डेटाबेस पंक्ति की अलग पहचान किससे होती है?','What helps keyboard users navigate?':'कीबोर्ड उपयोगकर्ताओं को नेविगेट करने में क्या मदद करता है?',
+    'What makes a test useful?':'टेस्ट को उपयोगी क्या बनाता है?','How can retries avoid duplicate charges?':'दोबारा कोशिश पर दोहरे भुगतान से कैसे बचें?',
+    'What supports two-way live updates?':'दो-तरफ़ा लाइव अपडेट के लिए क्या उपयोग होता है?','How should SQL input be added to a query?':'SQL इनपुट क्वेरी में कैसे जोड़ें?',
+    'What is a good first step for slow code?':'धीमे कोड के लिए पहला अच्छा कदम क्या है?','What should a good README explain?':'अच्छे README में क्या बताया जाना चाहिए?',
+    'What is a useful first step when debugging?':'डीबग करते समय पहला उपयोगी कदम क्या है?','Why use version control?':'वर्ज़न कंट्रोल क्यों इस्तेमाल करें?',
+    'As salted hashes':'सॉल्टेड हैश के रूप में','As plain text':'सादे पाठ के रूप में','In a URL':'URL में','In browser storage':'ब्राउज़र स्टोरेज में',
+    'Purpose, setup, and usage':'उद्देश्य, सेटअप और उपयोग','A clear expected result':'स्पष्ट अपेक्षित परिणाम','Track and review changes':'बदलावों का हिसाब और समीक्षा',
+    'Use an idempotency key':'आइडेम्पोटेंसी कुंजी इस्तेमाल करें','Use parameters':'पैरामीटर इस्तेमाल करें','Measure with a profiler':'प्रोफाइलर से मापें',
+    'Visible focus states':'दिखने वाली फ़ोकस स्थिति','Reproduce the issue':'समस्या को दोहराकर देखें'
+  },
+  kn: {
+    'Toggle theme':'ಥೀಮ್ ಬದಲಿಸಿ','Settings':'ಸೆಟ್ಟಿಂಗ್‌ಗಳು','Voice search':'ಧ್ವನಿ ಹುಡುಕಾಟ','Voice input':'ಧ್ವನಿ ಇನ್‌ಪುಟ್',
+    'Python':'Python','Flutter':'Flutter','Go':'Go','✓ Verified':'✓ ಪರಿಶೀಲಿಸಲಾಗಿದೆ','⚠ Fraud':'⚠ ವಂಚನೆ','📉 Low Code':'📉 ಕಡಿಮೆ ಕೋಡ್',
+    '✕ Clear':'✕ ತೆರವುಗೊಳಿಸಿ','⬆ Project Analyzer':'⬆ ಪ್ರಾಜೆಕ್ಟ್ ವಿಶ್ಲೇಷಕ','Upload your GitHub project URL to get an instant credibility analysis and quiz':'ತಕ್ಷಣದ ವಿಶ್ವಾಸಾರ್ಹತೆ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ಪ್ರಶ್ನೋತ್ತರಕ್ಕಾಗಿ GitHub ಪ್ರಾಜೆಕ್ಟ್ URL ನಮೂದಿಸಿ',
+    'Developer Name':'ಡೆವಲಪರ್ ಹೆಸರು','GitHub URL':'GitHub URL','Primary Language':'ಪ್ರಾಥಮಿಕ ಪ್ರೋಗ್ರಾಮಿಂಗ್ ಭಾಷೆ','Project Description':'ಪ್ರಾಜೆಕ್ಟ್ ವಿವರಣೆ',
+    'e.g. Arjun Sharma':'ಉದಾ. ಅರ್ಜುನ್ ಶರ್ಮಾ','Describe what this project does…':'ಈ ಪ್ರಾಜೆಕ್ಟ್ ಏನು ಮಾಡುತ್ತದೆ ಎಂದು ವಿವರಿಸಿ…','⚡ Analyze & Start Quiz':'⚡ ವಿಶ್ಲೇಷಿಸಿ ಮತ್ತು ಪ್ರಶ್ನೋತ್ತರ ಪ್ರಾರಂಭಿಸಿ',
+    'Fill in the details and click Analyze — the quiz will appear here immediately after scanning':'ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ, ವಿಶ್ಲೇಷಿಸಿ ಕ್ಲಿಕ್ ಮಾಡಿ — ನಂತರ ಪ್ರಶ್ನೋತ್ತರ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ',
+    'Top developers by credibility score':'ವಿಶ್ವಾಸಾರ್ಹತೆ ಸ್ಕೋರ್ ಪ್ರಕಾರ ಡೆವಲಪರ್‌ಗಳ ಶ್ರೇಯಾಂಕ','How is credibility score calculated?':'ವಿಶ್ವಾಸಾರ್ಹತೆ ಸ್ಕೋರ್ ಹೇಗೆ ಲೆಕ್ಕಿಸಲಾಗುತ್ತದೆ?',
+    'How do I get verified?':'ನಾನು ಹೇಗೆ ಪರಿಶೀಲನೆ ಪಡೆಯಬಹುದು?','What is low code warning?':'ಕಡಿಮೆ ಕೋಡ್ ಎಚ್ಚರಿಕೆ ಎಂದರೇನು?',
+    'What does the quiz test?':'ಪ್ರಶ್ನೋತ್ತರದಲ್ಲಿ ಏನು ಪರೀಕ್ಷಿಸಲಾಗುತ್ತದೆ?','Search developers by name, skill, location, specialty…':'ಹೆಸರು, ಕೌಶಲ್ಯ, ಸ್ಥಳ ಅಥವಾ ಪರಿಣತಿಯಿಂದ ಡೆವಲಪರ್‌ಗಳನ್ನು ಹುಡುಕಿ…',
+    'Search':'ಹುಡುಕಿ','Total Developers':'ಒಟ್ಟು ಡೆವಲಪರ್‌ಗಳು','Verified':'ಪರಿಶೀಲಿಸಲಾಗಿದೆ','Low Code':'ಕಡಿಮೆ ಕೋಡ್',
+    'Fraud Detected':'ವಂಚನೆ ಪತ್ತೆ','Avg. Score':'ಸರಾಸರಿ ಸ್ಕೋರ್','📊 Recruiter Quick View':'📊 ನೇಮಕಾತಿ ತ್ವರಿತ ನೋಟ',
+    'Real-time credibility analytics across all developers':'ಎಲ್ಲ ಡೆವಲಪರ್‌ಗಳ ವಿಶ್ವಾಸಾರ್ಹತೆ ವಿಶ್ಲೇಷಣೆ','Score Distribution':'ಸ್ಕೋರ್ ಹಂಚಿಕೆ',
+    'Developer Status Breakdown':'ಡೆವಲಪರ್ ಸ್ಥಿತಿ ವಿವರ','Activity by Commit Tier':'ಕಮಿಟ್ ಮಟ್ಟದ ಚಟುವಟಿಕೆ','Top Specialties':'ಪ್ರಮುಖ ಪರಿಣತಿಗಳು',
+    '👨‍💻 Developer Profiles':'👨‍💻 ಡೆವಲಪರ್ ಪ್ರೊಫೈಲ್‌ಗಳು','All':'ಎಲ್ಲಾ','🤖 Ask Veriffy AI':'🤖 Veriffy AI ಅನ್ನು ಕೇಳಿ',
+    'Ask anything about how Veriffy works':'Veriffy ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ ಎಂದು ಕೇಳಿ','Hi Recruiter! I\'m Veriffy AI. Ask me how credibility scoring works, how to spot fraud, or anything about finding verified talent.':'ನಮಸ್ಕಾರ ನೇಮಕಾತಿದಾರರೇ! ನಾನು Veriffy AI. ಸ್ಕೋರ್, ವಂಚನೆ ಪತ್ತೆ ಅಥವಾ ಪರಿಶೀಲಿತ ಪ್ರತಿಭೆಯ ಬಗ್ಗೆ ಕೇಳಿ。',
+    'Hi Developer! I\'m Veriffy AI. Ask me how credibility scoring works, how to get verified, or anything about this platform.':'ನಮಸ್ಕಾರ ಡೆವಲಪರ್‌ರೇ! ನಾನು Veriffy AI. ಸ್ಕೋರ್, ಪರಿಶೀಲನೆ ಅಥವಾ ಈ ವೇದಿಕೆಯ ಬಗ್ಗೆ ಕೇಳಿ。',
+    'Ask a question…':'ಪ್ರಶ್ನೆ ಕೇಳಿ…','Send':'ಕಳುಹಿಸಿ','What is fraud detection?':'ವಂಚನೆ ಪತ್ತೆ ಎಂದರೇನು?',
+    'How do I use the recruiter dashboard?':'ನೇಮಕಾತಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಹೇಗೆ ಬಳಸುವುದು?','How is credibility score calculated?':'ವಿಶ್ವಾಸಾರ್ಹತೆ ಸ್ಕೋರ್ ಹೇಗೆ ಲೆಕ್ಕಿಸಲಾಗುತ್ತದೆ?',
+    'How do I get verified?':'ಪರಿಶೀಲನೆ ಹೇಗೆ ಪಡೆಯುವುದು?','What does the quiz test?':'ಪ್ರಶ್ನೋತ್ತರದಲ್ಲಿ ಏನು ಪರೀಕ್ಷಿಸಲಾಗುತ್ತದೆ?',
+    '❓ Help & FAQ':'❓ ಸಹಾಯ ಮತ್ತು ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳು','Project Verification Interview':'ಪ್ರಾಜೆಕ್ಟ್ ಪರಿಶೀಲನಾ ಸಂದರ್ಶನ','🔒 PROCTORED':'🔒 ಮೇಲ್ವಿಚಾರಣೆಯಲ್ಲಿದೆ',
+    'Time left:':'ಉಳಿದ ಸಮಯ:','Type your answer here…':'ನಿಮ್ಮ ಉತ್ತರವನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ…','Score:':'ಸ್ಕೋರ್:','Skip →':'ಬಿಟ್ಟುಬಿಡಿ →','Submit Answer':'ಉತ್ತರ ಸಲ್ಲಿಸಿ',
+    '⚠ Tab switch detected! Return immediately or session will be terminated.':'⚠ ಟ್ಯಾಬ್ ಬದಲಾವಣೆ ಕಂಡುಬಂದಿದೆ! ತಕ್ಷಣ ಹಿಂದಿರುಗಿ, ಇಲ್ಲದಿದ್ದರೆ ಸೆಷನ್ ಮುಗಿಯುತ್ತದೆ。',
+    '✓ Back to Platform':'✓ ವೇದಿಕೆಗೆ ಹಿಂತಿರುಗಿ','Proof-of-Work Developer Platform':'ಕೆಲಸದ ಸಾಕ್ಷ್ಯ ಆಧಾರಿತ ಡೆವಲಪರ್ ವೇದಿಕೆ',
+    'I am joining as a…':'ನಾನು ಈ ಪಾತ್ರದಲ್ಲಿ ಸೇರುತ್ತಿದ್ದೇನೆ…','Choose your role to get a personalised experience':'ವೈಯಕ್ತಿಕ ಅನುಭವಕ್ಕಾಗಿ ನಿಮ್ಮ ಪಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ',
+    'Developer':'ಡೆವಲಪರ್','Verify your skills, build credibility, get hired':'ಕೌಶಲ್ಯ ಪರಿಶೀಲಿಸಿ, ವಿಶ್ವಾಸಾರ್ಹತೆ ಬೆಳೆಸಿ, ಉದ್ಯೋಗ ಪಡೆಯಿರಿ',
+    'Recruiter':'ನೇಮಕಾತಿದಾರ','Find verified talent, spot fraud, hire confidently':'ಪರಿಶೀಲಿತ ಪ್ರತಿಭೆ ಹುಡುಕಿ, ವಂಚನೆ ಗುರುತಿಸಿ, ವಿಶ್ವಾಸದಿಂದ ನೇಮಿಸಿ',
+    'Continue →':'ಮುಂದುವರಿಸಿ →','← Back':'← ಹಿಂದಕ್ಕೆ','Sign In':'ಸೈನ್ ಇನ್','Register':'ನೋಂದಣಿ','Email':'ಇಮೇಲ್','Password':'ಪಾಸ್‌ವರ್ಡ್',
+    'Remember me':'ನನ್ನನ್ನು ನೆನಪಿಡಿ','Forgot password?':'ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿರಾ?','Sign In →':'ಸೈನ್ ಇನ್ →','or continue with':'ಅಥವಾ ಇದರೊಂದಿಗೆ ಮುಂದುವರಿಸಿ',
+    'Full Name':'ಪೂರ್ಣ ಹೆಸರು','Role':'ಪಾತ್ರ','Min 8 characters':'ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳು','GitHub Username (optional)':'GitHub ಬಳಕೆದಾರ ಹೆಸರು (ಐಚ್ಛಿಕ)',
+    'Create Account →':'ಖಾತೆ ರಚಿಸಿ →','Built for the future of fair hiring · 2025':'ನ್ಯಾಯಯುತ ನೇಮಕಾತಿಯ ಭವಿಷ್ಯಕ್ಕಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ · 2025',
+    '⚙ Settings':'⚙ ಸೆಟ್ಟಿಂಗ್‌ಗಳು','🌙 Dark / Light Mode':'🌙 ಡಾರ್ಕ್ / ಲೈಟ್ ಮೋಡ್','Toggle':'ಬದಲಿಸಿ','🌐 Language':'🌐 ಭಾಷೆ',
+    '🔔 Notifications':'🔔 ಅಧಿಸೂಚನೆಗಳು','🔒 Privacy Mode':'🔒 ಗೌಪ್ಯತೆ ಮೋಡ್','📊 Auto-refresh Dashboard':'📊 ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಸ್ವಯಂ ರಿಫ್ರೆಶ್',
+    '🚨 Fraud Alerts':'🚨 ವಂಚನೆ ಎಚ್ಚರಿಕೆಗಳು','Help & Support':'ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ','Open':'ತೆರೆಯಿರಿ','🚪 Sign Out':'🚪 ಸೈನ್ ಔಟ್','Sign Out':'ಸೈನ್ ಔಟ್',
+    'Project Verification Quiz':'ಪ್ರಾಜೆಕ್ಟ್ ಪರಿಶೀಲನಾ ಪ್ರಶ್ನೋತ್ತರ','TIME':'ಸಮಯ','s':'ಸೆಕೆಂ','Skip ›':'ಬಿಟ್ಟುಬಿಡಿ ›','✕ Close':'✕ ಮುಚ್ಚಿ',
+    '⚠ Tab switch detected! Return immediately — session may be terminated.':'⚠ ಟ್ಯಾಬ್ ಬದಲಾವಣೆ ಕಂಡುಬಂದಿದೆ! ತಕ್ಷಣ ಹಿಂದಿರುಗಿ — ಸೆಷನ್ ಮುಗಿಯಬಹುದು。',
+    'Verification Passed':'ಪರಿಶೀಲನೆ ಯಶಸ್ವಿ','Verification Denied':'ಪರಿಶೀಲನೆ ವಿಫಲ','Correct':'ಸರಿಯಾಗಿದೆ','Incorrect':'ತಪ್ಪಾಗಿದೆ','Timed out':'ಸಮಯ ಮುಗಿದಿದೆ','Skipped':'ಬಿಟ್ಟುಬಿಡಲಾಗಿದೆ',
+    'No developers found':'ಡೆವಲಪರ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ','Try a different search or filter.':'ಬೇರೆ ಹುಡುಕಾಟ ಅಥವಾ ಫಿಲ್ಟರ್ ಪ್ರಯತ್ನಿಸಿ。','View Profile':'ಪ್ರೊಫೈಲ್ ನೋಡಿ','Verify':'ಪರಿಶೀಲಿಸಿ','🎯 Interview':'🎯 ಸಂದರ್ಶನ',
+    'Credibility':'ವಿಶ್ವಾಸಾರ್ಹತೆ','Projects':'ಪ್ರಾಜೆಕ್ಟ್‌ಗಳು','Lines of Code':'ಕೋಡ್ ಸಾಲುಗಳು','Commits':'ಕಮಿಟ್‌ಗಳು','Stars':'ಸ್ಟಾರ್‌ಗಳು','YoE':'ಅನುಭವ ವರ್ಷಗಳು',
+    'Commit Heatmap (Last 30 Days)':'ಕಳೆದ 30 ದಿನಗಳ ಕಮಿಟ್ ಚಟುವಟಿಕೆ','FRAUD ACCOUNT DETECTED':'ವಂಚನೆ ಖಾತೆ ಪತ್ತೆಯಾಗಿದೆ',
+    'Zero real commit history. Claims are fabricated. Do not proceed.':'ನಿಜವಾದ ಕಮಿಟ್ ಇತಿಹಾಸವಿಲ್ಲ. ಹೇಳಿಕೆಗಳು ಸುಳ್ಳು. ಮುಂದುವರಿಯಬೇಡಿ。',
+    'Preparing demo quiz…':'ಡೆಮೋ ಪ್ರಶ್ನೋತ್ತರ ಸಿದ್ಧವಾಗುತ್ತಿದೆ…','This demo does not fetch or analyze GitHub repository data.':'ಈ ಡೆಮೋ GitHub ರೆಪೊಸಿಟರಿ ಡೇಟಾವನ್ನು ಪಡೆಯುವುದಿಲ್ಲ ಅಥವಾ ವಿಶ್ಲೇಷಿಸುವುದಿಲ್ಲ。',
+    'Preparing demo estimate…':'ಡೆಮೋ ಅಂದಾಜು ಸಿದ್ಧವಾಗುತ್ತಿದೆ…','Demo only: this page does not connect to GitHub or inspect repository data.':'ಡೆಮೋ ಮಾತ್ರ: ಈ ಪುಟ GitHub ಗೆ ಸಂಪರ್ಕಿಸಿ ರೆಪೊಸಿಟರಿ ಪರಿಶೀಲಿಸುವುದಿಲ್ಲ。',
+    'Demo estimate':'ಡೆಮೋ ಅಂದಾಜು','Verification Report':'ಪರಿಶೀಲನಾ ವರದಿ','✓ Verification Passed':'✓ ಪರಿಶೀಲನೆ ಯಶಸ್ವಿ','✕ Verification Denied':'✕ ಪರಿಶೀಲನೆ ವಿಫಲ',
+    '✓ Developer Verified on Veriffy':'✓ Veriffy ನಲ್ಲಿ ಡೆವಲಪರ್ ಪರಿಶೀಲಿಸಲಾಗಿದೆ','✓ Officially Verified on Veriffy':'✓ Veriffy ನಲ್ಲಿ ಅಧಿಕೃತ ಪರಿಶೀಲನೆ',
+    '✕ Does not meet verification threshold (50%)':'✕ ಪರಿಶೀಲನೆಗೆ 50% ಅಂಕ ಅಗತ್ಯ','✕ Cannot be verified — needs more practice':'✕ ಪರಿಶೀಲನೆ ಆಗಲಿಲ್ಲ — ಇನ್ನಷ್ಟು ಅಭ್ಯಾಸ ಮಾಡಿ',
+    'Below the 50% threshold — verification denied':'50% ಕ್ಕಿಂತ ಕಡಿಮೆ — ಪರಿಶೀಲನೆ ವಿಫಲ','Meets the 50% verification threshold':'50% ಪರಿಶೀಲನಾ ಮಿತಿ ತಲುಪಿದೆ',
+    '✓ Done — Close':'✓ ಮುಗಿದಿದೆ — ಮುಚ್ಚಿ','↺ Close & Retry':'↺ ಮುಚ್ಚಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ'
+  }
+};
+
+Object.assign(PAGE_TEXT_I18N.kn, {
+  'https://github.com/username/repo':'https://github.com/username/repo','you@example.com':'ನಿಮ್ಮ ಇಮೇಲ್','Arjun Sharma':'ಅರ್ಜುನ್ ಶರ್ಮಾ','username':'ಬಳಕೆದಾರ ಹೆಸರು',
+  'How is credibility score calculated?':'ವಿಶ್ವಾಸಾರ್ಹತೆ ಸ್ಕೋರ್ ಹೇಗೆ ಲೆಕ್ಕಿಸಲಾಗುತ್ತದೆ?','What is fraud detection?':'ವಂಚನೆ ಪತ್ತೆ ಎಂದರೇನು?',
+  'What does \'Low Code\' mean?':'“ಕಡಿಮೆ ಕೋಡ್” ಎಂದರೇನು?','Can I use Veriffy as a recruiter?':'ನೇಮಕಾತಿಗಾಗಿ Veriffy ಬಳಸಬಹುದೇ?',
+  'Is voice search available?':'ಧ್ವನಿ ಹುಡುಕಾಟ ಲಭ್ಯವಿದೆಯೇ?','What does the Project Analyzer do?':'ಪ್ರಾಜೆಕ್ಟ್ ವಿಶ್ಲೇಷಕ ಏನು ಮಾಡುತ್ತದೆ?',
+  'How does the leaderboard work?':'ಲೀಡರ್‌ಬೋರ್ಡ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ?',
+  'The credibility score (0–100) is based on total lines of code, commit frequency, project count, GitHub stars, and code complexity analysis. Developers with consistent contributions over time score higher.':'ವಿಶ್ವಾಸಾರ್ಹತೆ ಸ್ಕೋರ್ (0–100) ಕೋಡ್ ಸಾಲುಗಳು, ಕಮಿಟ್ ಆವರ್ತನೆ, ಪ್ರಾಜೆಕ್ಟ್ ಸಂಖ್ಯೆ, GitHub ಸ್ಟಾರ್‌ಗಳು ಮತ್ತು ಕೋಡ್ ಸಂಕೀರ್ಣತೆಯನ್ನು ಆಧರಿಸಿದೆ. ನಿರಂತರ ಕೊಡುಗೆ ನೀಡುವವರಿಗೆ ಹೆಚ್ಚಿನ ಸ್ಕೋರ್ ಸಿಗುತ್ತದೆ.',
+  'Fraud detection flags accounts that claim high experience but have near-zero commit history, unrealistically inflated project stats, or no verifiable GitHub presence. These are highlighted in red with a ⚠ badge.':'ಹೆಚ್ಚಿನ ಅನುಭವವೆಂದು ಹೇಳಿಕೊಂಡರೂ ಕಮಿಟ್ ಇಲ್ಲದ, ಅಸಾಧ್ಯ ಅಂಕಿಅಂಶಗಳಿರುವ ಅಥವಾ GitHub ಪರಿಶೀಲಿಸಲಾಗದ ಖಾತೆಗಳನ್ನು ವಂಚನೆ ಪತ್ತೆ ಗುರುತಿಸುತ್ತದೆ. ಅವು ಕೆಂಪಿನಲ್ಲಿ ಕಾಣುತ್ತವೆ.',
+  'A developer is tagged Low Code when they have fewer than 20K lines of verified code or very few commits relative to their claimed experience. This is a caution flag, not a disqualifier.':'20 ಸಾವಿರಕ್ಕಿಂತ ಕಡಿಮೆ ಪರಿಶೀಲಿತ ಕೋಡ್ ಸಾಲುಗಳು ಅಥವಾ ಅನುಭವಕ್ಕೆ ಹೋಲಿಸಿದರೆ ಕಡಿಮೆ ಕಮಿಟ್ ಇದ್ದರೆ “ಕಡಿಮೆ ಕೋಡ್” ಎಂದು ಗುರುತಿಸಲಾಗುತ್ತದೆ. ಇದು ಎಚ್ಚರಿಕೆ ಮಾತ್ರ.',
+  "Link your GitHub account and upload at least 3 projects. Veriffy's engine will analyse your commit history, code authorship, and project complexity. Scores above 75 with consistent activity get the Verified badge.":'GitHub ಖಾತೆ ಜೋಡಿಸಿ ಕನಿಷ್ಠ 3 ಪ್ರಾಜೆಕ್ಟ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ. Veriffy ಕಮಿಟ್ ಇತಿಹಾಸ, ಕೋಡ್ ಬರಹಗಾರಿಕೆ ಮತ್ತು ಪ್ರಾಜೆಕ್ಟ್ ಸಂಕೀರ್ಣತೆಯನ್ನು ಪರಿಶೀಲಿಸುತ್ತದೆ. ನಿರಂತರ ಚಟುವಟಿಕೆ ಮತ್ತು 75 ಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಸ್ಕೋರ್‌ಗೆ ಪರಿಶೀಲಿತ ಬ್ಯಾಡ್ಜ್ ಸಿಗುತ್ತದೆ.',
+  'Yes! The Recruiter Quick View dashboard gives you an instant visual breakdown of all candidates — verified, low code, and fraud flagged — so you can shortlist in seconds.':'ಹೌದು! ನೇಮಕಾತಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಎಲ್ಲಾ ಅಭ್ಯರ್ಥಿಗಳನ್ನು ಪರಿಶೀಲಿತ, ಕಡಿಮೆ ಕೋಡ್ ಮತ್ತು ವಂಚನೆ ಸೂಚನೆಗಳಾಗಿ ತೋರಿಸುತ್ತದೆ; ಕ್ಷಣಗಳಲ್ಲಿ ಪಟ್ಟಿ ಮಾಡಬಹುದು.',
+  'Yes. Click the 🎙 microphone button next to the search bar. Veriffy uses the Web Speech API to transcribe your voice query and search developers instantly.':'ಹೌದು. ಹುಡುಕಾಟದ ಪಕ್ಕದಲ್ಲಿರುವ 🎙 ಮೈಕ್ರೊಫೋನ್ ಒತ್ತಿ. Veriffy ನಿಮ್ಮ ಧ್ವನಿಯನ್ನು ಪಠ್ಯವಾಗಿ ಬದಲಿಸಿ ಡೆವಲಪರ್‌ಗಳನ್ನು ಹುಡುಕುತ್ತದೆ.',
+  'The Project Analyzer takes a GitHub URL and developer details to simulate a credibility analysis — scoring code complexity, commit depth, and authenticity using an in-browser algorithm.':'ಪ್ರಾಜೆಕ್ಟ್ ವಿಶ್ಲೇಷಕ GitHub URL ಮತ್ತು ಡೆವಲಪರ್ ವಿವರಗಳಿಂದ ವಿಶ್ವಾಸಾರ್ಹತೆಯ ಡೆಮೋ ಅಂದಾಜು ನೀಡುತ್ತದೆ. ಇದು ಮೂಲ ಕೋಡ್ ಪರಿಶೀಲಿಸುವುದಿಲ್ಲ.',
+  'The leaderboard ranks the top 5 developers by their credibility score. It updates in real time as you filter or search developers.':'ಲೀಡರ್‌ಬೋರ್ಡ್ ವಿಶ್ವಾಸಾರ್ಹತೆ ಸ್ಕೋರ್ ಪ್ರಕಾರ ಡೆವಲಪರ್‌ಗಳನ್ನು ಶ್ರೇಣೀಕರಿಸುತ್ತದೆ ಮತ್ತು ಹುಡುಕಾಟ ಅಥವಾ ಫಿಲ್ಟರ್ ಮಾಡಿದಾಗ ನವೀಕರಿಸುತ್ತದೆ.',
+  'Which keyword starts a function?':'ಫಂಕ್ಷನ್ ಆರಂಭಿಸುವ ಕೀವರ್ಡ್ ಯಾವುದು?','Which value means “no value”?':'“ಮೌಲ್ಯವಿಲ್ಲ” ಎನ್ನುವುದನ್ನು ಯಾವ ಮೌಲ್ಯ ಸೂಚಿಸುತ್ತದೆ?',
+  'Which collection stores unique items?':'ವಿಶಿಷ್ಟ ಅಂಶಗಳನ್ನು ಯಾವ ಸಂಗ್ರಹಣೆ ಇಡುತ್ತದೆ?','Which keyword creates a block-scoped constant?':'ಬ್ಲಾಕ್ ವ್ಯಾಪ್ತಿಯ ಸ್ಥಿರ ಮೌಲ್ಯಕ್ಕೆ ಯಾವ ಕೀವರ್ಡ್?',
+  'Which method converts JSON text to an object?':'JSON ಪಠ್ಯವನ್ನು ಆಬ್ಜೆಕ್ಟ್ ಆಗಿ ಯಾವ ವಿಧಾನ ಬದಲಿಸುತ್ತದೆ?','Which value means “not assigned”?':'“ನಿಗದಿಪಡಿಸಿಲ್ಲ” ಎನ್ನುವುದನ್ನು ಯಾವ ಮೌಲ್ಯ ಸೂಚಿಸುತ್ತದೆ?',
+  'Which type represents text?':'ಪಠ್ಯವನ್ನು ಯಾವ ಟೈಪ್ ಸೂಚಿಸುತ್ತದೆ?','What does `?` mean on a property?':'ಪ್ರಾಪರ್ಟಿಯಲ್ಲಿನ `?` ಎಂದರೇನು?',
+  'Which type accepts any string or number?':'ಪಠ್ಯ ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ಯಾವ ಟೈಪ್ ಸ್ವೀಕರಿಸುತ್ತದೆ?','Which operator starts a short variable declaration?':'ಸಂಕ್ಷಿಪ್ತ ವ್ಯಾರಿಯಬಲ್ ಘೋಷಣೆ ಯಾವ ಆಪರೇಟರ್‌ನಿಂದ ಆರಂಭವಾಗುತ್ತದೆ?',
+  'What does `defer` do?':'`defer` ಏನು ಮಾಡುತ್ತದೆ?','Which keyword handles an error value?':'ದೋಷ ಮೌಲ್ಯವನ್ನು ಯಾವ ಕೀವರ್ಡ್ ಪರಿಶೀಲಿಸುತ್ತದೆ?',
+  'Which keyword declares an immutable variable?':'ಬದಲಾಯಿಸಲಾಗದ ವ್ಯಾರಿಯಬಲ್ ಘೋಷಿಸುವ ಕೀವರ್ಡ್ ಯಾವುದು?','What does `Option` represent?':'`Option` ಏನನ್ನು ಸೂಚಿಸುತ್ತದೆ?',
+  'What does `mut` allow?':'`mut` ಏನು ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ?','Which keyword declares a value set once?':'ಒಮ್ಮೆ ನಿಗದಿಯಾಗುವ ಮೌಲ್ಯಕ್ಕೆ ಯಾವ ಕೀವರ್ಡ್?',
+  'Which widget arranges children vertically?':'ಮಕ್ಕಳನ್ನು ಲಂಬವಾಗಿ ಜೋಡಿಸುವ ವಿಜೆಟ್ ಯಾವುದು?','Which method builds a Flutter widget?':'Flutter ವಿಜೆಟ್ ನಿರ್ಮಿಸುವ ವಿಧಾನ ಯಾವುದು?',
+  'Which keyword creates an object?':'ಆಬ್ಜೆಕ್ಟ್ ರಚಿಸುವ ಕೀವರ್ಡ್ ಯಾವುದು?','Which collection stores unique values?':'ವಿಶಿಷ್ಟ ಮೌಲ್ಯಗಳನ್ನು ಯಾವ ಸಂಗ್ರಹಣೆ ಇಡುತ್ತದೆ?',
+  'Which block handles an exception?':'ಎಕ್ಸೆಪ್ಶನ್ ನಿರ್ವಹಿಸುವ ಬ್ಲಾಕ್ ಯಾವುದು?','Which type represents true or false?':'ಸರಿ ಅಥವಾ ತಪ್ಪನ್ನು ಯಾವ ಟೈಪ್ ಸೂಚಿಸುತ್ತದೆ?',
+  'Which container is a dynamic array?':'ಡೈನಾಮಿಕ್ ಅರೇಗೆ ಯಾವ ಕಂಟೇನರ್?','Which symbol accesses a pointer member?':'ಪಾಯಿಂಟರ್ ಸದಸ್ಯಕ್ಕೆ ಯಾವ ಚಿಹ್ನೆ ಪ್ರವೇಶಿಸುತ್ತದೆ?',
+  'Which keyword makes a value immutable?':'ಮೌಲ್ಯ ಬದಲಾಯಿಸಲಾಗದಂತೆ ಮಾಡುವ ಕೀವರ್ಡ್ ಯಾವುದು?','Which visibility limits access to this contract?':'ಕಾಂಟ್ರಾಕ್ಟ್ ಪ್ರವೇಶವನ್ನು ಮಿತಿಗೊಳಿಸುವ visibility ಯಾವುದು?',
+  'Which keyword marks a function as read-only?':'ಫಂಕ್ಷನ್ read-only ಎಂದು ಗುರುತಿಸುವ ಕೀವರ್ಡ್ ಯಾವುದು?','Where should a contract’s persistent data live?':'ಕಾಂಟ್ರಾಕ್ಟ್‌ನ ಶಾಶ್ವತ ಡೇಟಾ ಎಲ್ಲಿರಬೇಕು?',
+  'How should passwords be stored?':'ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಹೇಗೆ ಸಂಗ್ರಹಿಸಬೇಕು?','What status code fits invalid input?':'ಅಮಾನ್ಯ ಇನ್‌ಪುಟ್‌ಗೆ ಯಾವ ಸ್ಥಿತಿ ಕೋಡ್ ಸೂಕ್ತ?',
+  'What makes a database row uniquely identifiable?':'ಡೇಟಾಬೇಸ್ ಸಾಲನ್ನು ವಿಶಿಷ್ಟವಾಗಿ ಗುರುತಿಸುವುದು ಯಾವುದು?','What helps keyboard users navigate?':'ಕೀಬೋರ್ಡ್ ಬಳಕೆದಾರರಿಗೆ ನ್ಯಾವಿಗೇಟ್ ಮಾಡಲು ಯಾವುದು ಸಹಾಯ?',
+  'What makes a test useful?':'ಟೆಸ್ಟ್ ಅನ್ನು ಉಪಯುಕ್ತವಾಗಿಸುವುದು ಯಾವುದು?','How can retries avoid duplicate charges?':'ಮರುಪ್ರಯತ್ನದಲ್ಲಿ ನಕಲಿ ಶುಲ್ಕ ತಪ್ಪಿಸುವುದು ಹೇಗೆ?',
+  'What supports two-way live updates?':'ಎರಡು-ದಾರಿ ಲೈವ್ ಅಪ್‌ಡೇಟ್‌ಗೆ ಯಾವುದು ಸಹಾಯ?','How should SQL input be added to a query?':'SQL ಇನ್‌ಪುಟ್ ಅನ್ನು ಕ್ವೆರಿಗೆ ಹೇಗೆ ಸೇರಿಸಬೇಕು?',
+  'What is a good first step for slow code?':'ನಿಧಾನ ಕೋಡ್‌ಗೆ ಉತ್ತಮ ಮೊದಲ ಹೆಜ್ಜೆ ಯಾವುದು?','What should a good README explain?':'ಉತ್ತಮ README ಏನು ವಿವರಿಸಬೇಕು?',
+  'What is a useful first step when debugging?':'ಡೀಬಗ್ ಮಾಡುವಾಗ ಉಪಯುಕ್ತ ಮೊದಲ ಹೆಜ್ಜೆ ಯಾವುದು?','Why use version control?':'ವರ್ಷನ್ ಕಂಟ್ರೋಲ್ ಏಕೆ ಬಳಸಬೇಕು?',
+  'As salted hashes':'ಸಾಲ್ಟ್ ಮಾಡಿದ ಹ್ಯಾಶ್‌ಗಳಾಗಿ','As plain text':'ಸರಳ ಪಠ್ಯವಾಗಿ','In a URL':'URL ನಲ್ಲಿ','In browser storage':'ಬ್ರೌಸರ್ ಸಂಗ್ರಹಣೆಯಲ್ಲಿ',
+  'Purpose, setup, and usage':'ಉದ್ದೇಶ, ಸೆಟಪ್ ಮತ್ತು ಬಳಕೆ','A clear expected result':'ಸ್ಪಷ್ಟ ನಿರೀಕ್ಷಿತ ಫಲಿತಾಂಶ','Track and review changes':'ಬದಲಾವಣೆಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ ಪರಿಶೀಲಿಸಿ',
+  'Use an idempotency key':'ಐಡೆಂಪೋಟೆನ್ಸಿ ಕೀ ಬಳಸಿ','Use parameters':'ಪ್ಯಾರಾಮೀಟರ್‌ಗಳನ್ನು ಬಳಸಿ','Measure with a profiler':'ಪ್ರೊಫೈಲರ್‌ನಿಂದ ಅಳೆಯಿರಿ',
+  'Visible focus states':'ಕಾಣುವ ಫೋಕಸ್ ಸ್ಥಿತಿಗಳು','Reproduce the issue':'ಸಮಸ್ಯೆಯನ್ನು ಮರುಸೃಷ್ಟಿಸಿ'
+});
+
+Object.assign(PAGE_TEXT_I18N.hi, {
+  'Distributed Systems':'वितरित प्रणालियाँ','Mobile Development':'मोबाइल विकास','Machine Learning / AI':'मशीन लर्निंग / AI',
+  'Blockchain / Web3':'ब्लॉकचेन / Web3','DevOps / Cloud':'DevOps / क्लाउड','Data Engineering':'डेटा इंजीनियरिंग',
+  'Embedded Systems / IoT':'एम्बेडेड सिस्टम / IoT','NLP & Conversational AI':'NLP और संवादात्मक AI','Frontend Basics':'फ्रंटएंड की मूल बातें',
+  'Game Development':'गेम विकास','UI/UX Design':'UI/UX डिज़ाइन','SRE & Observability':'SRE और ऑब्ज़र्वेबिलिटी',
+  'AR/VR / Spatial Computing':'AR/VR / स्पैशियल कंप्यूटिंग','Compilers / PL Theory':'कंपाइलर / प्रोग्रामिंग भाषा सिद्धांत','Fraud / Impersonation':'धोखाधड़ी / पहचान की नकल','Claims All Specialties':'सभी विशेषज्ञताओं का दावा',
+  'Full-Stack Engineer':'फुल-स्टैक इंजीनियर','Flutter & Mobile Lead':'Flutter और मोबाइल प्रमुख','ML Engineer & Researcher':'ML इंजीनियर और शोधकर्ता',
+  'Data Engineer':'डेटा इंजीनियर','DevOps & Platform Engineer':'DevOps और प्लेटफ़ॉर्म इंजीनियर','Embedded Systems Engineer':'एम्बेडेड सिस्टम इंजीनियर',
+  'NLP / Conversational AI Engineer':'NLP / संवादात्मक AI इंजीनियर','Junior Frontend Developer':'जूनियर फ्रंटएंड डेवलपर','Senior Architect & CTO':'वरिष्ठ आर्किटेक्ट और CTO',
+  'Web3 & Smart Contract Dev':'Web3 और स्मार्ट कॉन्ट्रैक्ट डेवलपर','Compiler & PL Engineer':'कंपाइलर और प्रोग्रामिंग भाषा इंजीनियर',
+  'AR/VR Developer':'AR/VR डेवलपर','Game Developer (Unity/Unreal)':'गेम डेवलपर (Unity/Unreal)','Site Reliability Engineer':'साइट विश्वसनीयता इंजीनियर',
+  'UI/UX Designer (Transitioning to Dev)':'UI/UX डिज़ाइनर (डेवलपमेंट में बदलाव)','10x Full-Stack AI Engineer':'10x फुल-स्टैक AI इंजीनियर'
+});
+Object.assign(PAGE_TEXT_I18N.kn, {
+  'Distributed Systems':'ವಿತರಣಾ ವ್ಯವಸ್ಥೆಗಳು','Mobile Development':'ಮೊಬೈಲ್ ಅಭಿವೃದ್ಧಿ','Machine Learning / AI':'ಮಷಿನ್ ಲರ್ನಿಂಗ್ / AI',
+  'Blockchain / Web3':'ಬ್ಲಾಕ್‌ಚೈನ್ / Web3','DevOps / Cloud':'DevOps / ಕ್ಲೌಡ್','Data Engineering':'ಡೇಟಾ ಎಂಜಿನಿಯರಿಂಗ್',
+  'Embedded Systems / IoT':'ಎಂಬೆಡೆಡ್ ಸಿಸ್ಟಮ್‌ಗಳು / IoT','NLP & Conversational AI':'NLP ಮತ್ತು ಸಂವಾದಾತ್ಮಕ AI','Frontend Basics':'ಫ್ರಂಟ್‌ಎಂಡ್ ಮೂಲಭೂತಗಳು',
+  'Game Development':'ಗೇಮ್ ಅಭಿವೃದ್ಧಿ','UI/UX Design':'UI/UX ವಿನ್ಯಾಸ','SRE & Observability':'SRE ಮತ್ತು ವೀಕ್ಷಣೀಯತೆ',
+  'AR/VR / Spatial Computing':'AR/VR / ಸ್ಪೇಷಿಯಲ್ ಕಂಪ್ಯೂಟಿಂಗ್','Compilers / PL Theory':'ಕಂಪೈಲರ್ / ಪ್ರೋಗ್ರಾಮಿಂಗ್ ಭಾಷಾ ಸಿದ್ಧಾಂತ','Fraud / Impersonation':'ವಂಚನೆ / ಗುರುತಿನ ನಕಲು','Claims All Specialties':'ಎಲ್ಲ ಪರಿಣತಿಗಳ ಹಕ್ಕು',
+  'Full-Stack Engineer':'ಫುಲ್-ಸ್ಟ್ಯಾಕ್ ಎಂಜಿನಿಯರ್','Flutter & Mobile Lead':'Flutter ಮತ್ತು ಮೊಬೈಲ್ ಲೀಡ್','ML Engineer & Researcher':'ML ಎಂಜಿನಿಯರ್ ಮತ್ತು ಸಂಶೋಧಕ',
+  'Data Engineer':'ಡೇಟಾ ಎಂಜಿನಿಯರ್','DevOps & Platform Engineer':'DevOps ಮತ್ತು ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಎಂಜಿನಿಯರ್','Embedded Systems Engineer':'ಎಂಬೆಡೆಡ್ ಸಿಸ್ಟಮ್ ಎಂಜಿನಿಯರ್',
+  'NLP / Conversational AI Engineer':'NLP / ಸಂವಾದಾತ್ಮಕ AI ಎಂಜಿನಿಯರ್','Junior Frontend Developer':'ಜೂನಿಯರ್ ಫ್ರಂಟ್‌ಎಂಡ್ ಡೆವಲಪರ್','Senior Architect & CTO':'ಹಿರಿಯ ಆರ್ಕಿಟೆಕ್ಟ್ ಮತ್ತು CTO',
+  'Web3 & Smart Contract Dev':'Web3 ಮತ್ತು ಸ್ಮಾರ್ಟ್ ಕಾಂಟ್ರಾಕ್ಟ್ ಡೆವಲಪರ್','Compiler & PL Engineer':'ಕಂಪೈಲರ್ ಮತ್ತು ಪ್ರೋಗ್ರಾಮಿಂಗ್ ಭಾಷಾ ಎಂಜಿನಿಯರ್',
+  'AR/VR Developer':'AR/VR ಡೆವಲಪರ್','Game Developer (Unity/Unreal)':'ಗೇಮ್ ಡೆವಲಪರ್ (Unity/Unreal)','Site Reliability Engineer':'ಸೈಟ್ ವಿಶ್ವಾಸಾರ್ಹತೆ ಎಂಜಿನಿಯರ್',
+  'UI/UX Designer (Transitioning to Dev)':'UI/UX ಡಿಸೈನರ್ (ಡೆವಲಪ್‌ಮೆಂಟ್‌ಗೆ ಬದಲಾವಣೆ)','10x Full-Stack AI Engineer':'10x ಫುಲ್-ಸ್ಟ್ಯಾಕ್ AI ಎಂಜಿನಿಯರ್'
+});
+
+Object.assign(PAGE_TEXT_I18N.hi, {
+  'Exp':'अनुभव','Years experience':'वर्षों का अनुभव','years experience':'वर्षों का अनुभव','Project basics':'प्रोजेक्ट की मूल बातें',
+  'Authentication':'प्रमाणीकरण','API design':'API डिज़ाइन','Data storage':'डेटा संग्रहण','User interface':'यूज़र इंटरफ़ेस',
+  'Testing':'परीक्षण','Payments':'भुगतान','Real-time updates':'रीयल-टाइम अपडेट','Security':'सुरक्षा','Performance':'प्रदर्शन',
+  'Primary key':'प्राथमिक कुंजी','Table name':'टेबल का नाम','Index page':'इंडेक्स पेज','Column order':'कॉलम क्रम',
+  'CSV file':'CSV फ़ाइल','Static HTML':'स्थिर HTML','Cron-only polling':'केवल क्रॉन पोलिंग',
+  '400':'400','200':'200','301':'301','500':'500','developers':'डेवलपर',
+  'Fraud report submitted. Account flagged for review.':'धोखाधड़ी रिपोर्ट भेजी गई। खाते की समीक्षा होगी。',
+  'Repository scanned — launching quiz now!':'रिपॉज़िटरी जाँची गई — प्रश्नोत्तरी शुरू हो रही है!','Repository scanned — credibility report ready!':'रिपॉज़िटरी जाँची गई — विश्वसनीयता रिपोर्ट तैयार है!',
+  'Please enter a GitHub repository URL':'GitHub रिपॉज़िटरी URL दर्ज करें','Please sign in to start an interview':'साक्षात्कार शुरू करने के लिए साइन इन करें',
+  'Please sign in to access Help & FAQ':'सहायता और सामान्य प्रश्न देखने के लिए साइन इन करें','Voice search is not supported in this browser. Try Chrome.':'इस ब्राउज़र में आवाज़ से खोज उपलब्ध नहीं है। Chrome आज़माएँ।',
+  'Voice input not supported in this browser.':'इस ब्राउज़र में आवाज़ से इनपुट उपलब्ध नहीं है।','Voice input error. Try again.':'आवाज़ इनपुट में त्रुटि। फिर कोशिश करें।',
+  'Voice error. Try again.':'आवाज़ में त्रुटि। फिर कोशिश करें।','🎙 Listening… speak now':'🎙 सुन रहे हैं… बोलें','🎙 Listening for your question…':'🎙 आपका प्रश्न सुन रहे हैं…',
+  'Please enter email and password':'ईमेल और पासवर्ड दर्ज करें','Please fill all required fields':'सभी आवश्यक फ़ील्ड भरें','Password must be at least 8 characters':'पासवर्ड कम से कम 8 अक्षरों का होना चाहिए',
+  'Please select a role first':'पहले भूमिका चुनें','Welcome,':'स्वागत है,','Signed out successfully. See you soon! 👋':'सफलतापूर्वक साइन आउट हुआ। फिर मिलेंगे! 👋',
+  'Password reset email sent!':'पासवर्ड रीसेट ईमेल भेजा गया!','Toggle':'बदलें','Language':'भाषा','⭐':'⭐',
+  'This is a demo only. No account was created.':'यह केवल डेमो है। कोई खाता नहीं बनाया गया।',
+  'result':'परिणाम','results':'परिणाम','result for':'के लिए परिणाम','results for':'के लिए परिणाम'
+  ,'developer':'डेवलपर','recruiter':'भर्ती प्रबंधक','It is optional':'यह वैकल्पिक है','It is private':'यह निजी है','It is a number':'यह संख्या है','It is readonly':'यह केवल-पढ़ने योग्य है',
+  'Runs a call when the function returns':'फ़ंक्शन लौटने पर कॉल चलाता है','Starts a goroutine':'गोरूटीन शुरू करता है','Declares a constant':'स्थिर मान घोषित करता है','Repeats a loop':'लूप दोहराता है',
+  'A value that may be absent':'ऐसा मान जो मौजूद न भी हो','A list of errors':'त्रुटियों की सूची','A thread':'एक थ्रेड','A file':'एक फ़ाइल','Changing a value':'मान बदलना','Sharing a value':'मान साझा करना','Returning early':'जल्दी लौटना','Making a copy':'कॉपी बनाना',
+  'Primary key':'प्राथमिक कुंजी','Table name':'टेबल का नाम','Index page':'इंडेक्स पेज','Column order':'कॉलम क्रम','A parameterized query':'पैरामीटर वाली क्वेरी','Cron-only polling':'केवल क्रॉन पोलिंग','Wrong input':'गलत इनपुट','Not found':'नहीं मिला','Server error':'सर्वर त्रुटि'
+});
+Object.assign(PAGE_TEXT_I18N.kn, {
+  'Exp':'ಅನುಭವ','Years experience':'ವರ್ಷಗಳ ಅನುಭವ','years experience':'ವರ್ಷಗಳ ಅನುಭವ','Project basics':'ಪ್ರಾಜೆಕ್ಟ್ ಮೂಲಭೂತಗಳು',
+  'Authentication':'ದೃಢೀಕರಣ','API design':'API ವಿನ್ಯಾಸ','Data storage':'ಡೇಟಾ ಸಂಗ್ರಹಣೆ','User interface':'ಬಳಕೆದಾರ ಇಂಟರ್‌ಫೇಸ್',
+  'Testing':'ಪರೀಕ್ಷೆ','Payments':'ಪಾವತಿಗಳು','Real-time updates':'ನೈಜ-ಸಮಯದ ಅಪ್‌ಡೇಟ್‌ಗಳು','Security':'ಭದ್ರತೆ','Performance':'ಕಾರ್ಯಕ್ಷಮತೆ',
+  'Primary key':'ಪ್ರಾಥಮಿಕ ಕೀ','Table name':'ಟೇಬಲ್ ಹೆಸರು','Index page':'ಇಂಡೆಕ್ಸ್ ಪುಟ','Column order':'ಕಾಲಮ್ ಕ್ರಮ',
+  'CSV file':'CSV ಫೈಲ್','Static HTML':'ಸ್ಥಿರ HTML','Cron-only polling':'ಕ್ರಾನ್ ಪೋಲಿಂಗ್ ಮಾತ್ರ','developers':'ಡೆವಲಪರ್‌ಗಳು',
+  'Fraud report submitted. Account flagged for review.':'ವಂಚನೆ ವರದಿ ಸಲ್ಲಿಸಲಾಗಿದೆ. ಖಾತೆಯನ್ನು ಪರಿಶೀಲನೆಗೆ ಗುರುತಿಸಲಾಗಿದೆ。',
+  'Repository scanned — launching quiz now!':'ರೆಪೊಸಿಟರಿ ಪರಿಶೀಲಿಸಲಾಗಿದೆ — ಪ್ರಶ್ನೋತ್ತರ ಪ್ರಾರಂಭವಾಗುತ್ತಿದೆ!','Repository scanned — credibility report ready!':'ರೆಪೊಸಿಟರಿ ಪರಿಶೀಲಿಸಲಾಗಿದೆ — ವಿಶ್ವಾಸಾರ್ಹತೆ ವರದಿ ಸಿದ್ಧವಾಗಿದೆ!',
+  'Please enter a GitHub repository URL':'GitHub ರೆಪೊಸಿಟರಿ URL ನಮೂದಿಸಿ','Please sign in to start an interview':'ಸಂದರ್ಶನ ಪ್ರಾರಂಭಿಸಲು ಸೈನ್ ಇನ್ ಮಾಡಿ',
+  'Please sign in to access Help & FAQ':'ಸಹಾಯ ಮತ್ತು ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳನ್ನು ನೋಡಲು ಸೈನ್ ಇನ್ ಮಾಡಿ','Voice search is not supported in this browser. Try Chrome.':'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಧ್ವನಿ ಹುಡುಕಾಟ ಬೆಂಬಲಿತವಿಲ್ಲ. Chrome ಪ್ರಯತ್ನಿಸಿ.',
+  'Voice input not supported in this browser.':'ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬೆಂಬಲಿತವಿಲ್ಲ.','Voice input error. Try again.':'ಧ್ವನಿ ಇನ್‌ಪುಟ್ ದೋಷ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+  'Voice error. Try again.':'ಧ್ವನಿ ದೋಷ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.','🎙 Listening… speak now':'🎙 ಕೇಳುತ್ತಿದೆ… ಮಾತನಾಡಿ','🎙 Listening for your question…':'🎙 ನಿಮ್ಮ ಪ್ರಶ್ನೆ ಕೇಳುತ್ತಿದೆ…',
+  'Please enter email and password':'ಇಮೇಲ್ ಮತ್ತು ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ','Please fill all required fields':'ಅಗತ್ಯವಿರುವ ಎಲ್ಲ ಕ್ಷೇತ್ರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ','Password must be at least 8 characters':'ಪಾಸ್‌ವರ್ಡ್ ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳಿರಬೇಕು',
+  'Please select a role first':'ಮೊದಲು ಪಾತ್ರ ಆಯ್ಕೆಮಾಡಿ','Signed out successfully. See you soon! 👋':'ಯಶಸ್ವಿಯಾಗಿ ಸೈನ್ ಔಟ್ ಆಗಿದೆ. ಮತ್ತೆ ಭೇಟಿಯಾಗೋಣ! 👋',
+  'Password reset email sent!':'ಪಾಸ್‌ವರ್ಡ್ ಮರುಹೊಂದಿಸುವ ಇಮೇಲ್ ಕಳುಹಿಸಲಾಗಿದೆ!','Language':'ಭಾಷೆ',
+  'result':'ಫಲಿತಾಂಶ','results':'ಫಲಿತಾಂಶಗಳು','result for':'ಇದಕ್ಕಾಗಿ ಫಲಿತಾಂಶ','results for':'ಇದಕ್ಕಾಗಿ ಫಲಿತಾಂಶಗಳು'
+  ,'developer':'ಡೆವಲಪರ್','recruiter':'ನೇಮಕಾತಿದಾರ','It is optional':'ಇದು ಐಚ್ಛಿಕ','It is private':'ಇದು ಖಾಸಗಿ','It is a number':'ಇದು ಸಂಖ್ಯೆ','It is readonly':'ಇದು ಓದಲು ಮಾತ್ರ',
+  'Runs a call when the function returns':'ಫಂಕ್ಷನ್ ಹಿಂತಿರುಗಿದಾಗ ಕರೆಯನ್ನು ಚಲಾಯಿಸುತ್ತದೆ','Starts a goroutine':'ಗೊರೂಟೀನ್ ಪ್ರಾರಂಭಿಸುತ್ತದೆ','Declares a constant':'ಸ್ಥಿರ ಮೌಲ್ಯ ಘೋಷಿಸುತ್ತದೆ','Repeats a loop':'ಲೂಪ್ ಪುನರಾವರ್ತಿಸುತ್ತದೆ',
+  'A value that may be absent':'ಇಲ್ಲದಿರಬಹುದಾದ ಮೌಲ್ಯ','A list of errors':'ದೋಷಗಳ ಪಟ್ಟಿ','A thread':'ಥ್ರೆಡ್','A file':'ಫೈಲ್','Changing a value':'ಮೌಲ್ಯ ಬದಲಿಸುವುದು','Sharing a value':'ಮೌಲ್ಯ ಹಂಚುವುದು','Returning early':'ಬೇಗನೆ ಹಿಂತಿರುಗುವುದು','Making a copy':'ನಕಲು ಮಾಡುವುದು',
+  'Primary key':'ಪ್ರಾಥಮಿಕ ಕೀ','Table name':'ಟೇಬಲ್ ಹೆಸರು','Index page':'ಇಂಡೆಕ್ಸ್ ಪುಟ','Column order':'ಕಾಲಮ್ ಕ್ರಮ','A parameterized query':'ಪ್ಯಾರಾಮೀಟರ್ ಕ್ವೆರಿ','Cron-only polling':'ಕ್ರಾನ್ ಪೋಲಿಂಗ್ ಮಾತ್ರ','Wrong input':'ತಪ್ಪು ಇನ್‌ಪುಟ್','Not found':'ಕಂಡುಬಂದಿಲ್ಲ','Server error':'ಸರ್ವರ್ ದೋಷ'
+});
+
+Object.assign(PAGE_TEXT_I18N.hi, {
+  'The credibility score (0–100) combines: lines of code (40%), commit frequency (30%), project count (20%), and community stars (10%). Developers above 80 are typically Verified. Below 50 gets a Low Code flag, and near-zero commit counts with inflated claims trigger Fraud detection.':'विश्वसनीयता स्कोर (0–100) कोड पंक्तियों (40%), कमिट आवृत्ति (30%), प्रोजेक्ट संख्या (20%) और समुदाय के स्टार (10%) से बनता है। 80 से अधिक स्कोर आम तौर पर सत्यापित है। 50 से कम पर कम कोड संकेत और बहुत कम कमिट के साथ बढ़े-चढ़े दावों पर धोखाधड़ी संकेत मिलता है।',
+  'Fraud is detected when: claimed experience is ≥5 years but commits are <10, stars appear fabricated, or GitHub profile is absent. Fraud accounts are highlighted in red with a blinking ⚠ badge across the platform.':'धोखाधड़ी तब चिह्नित होती है जब 5 या अधिक वर्षों के अनुभव के दावे के साथ 10 से कम कमिट हों, स्टार नकली लगें या GitHub प्रोफ़ाइल न हो। ऐसे खाते लाल रंग और ⚠ चिह्न से दिखते हैं।',
+  'A developer earns the Verified badge when their credibility score exceeds 75, they have a linked GitHub with consistent commit history, and at least 3 projects with real code authorship.':'डेवलपर को सत्यापित बैज तब मिलता है जब स्कोर 75 से अधिक हो, GitHub पर नियमित कमिट हों और कम से कम 3 प्रोजेक्ट में वास्तविक कोड योगदान हो।',
+  'The Low Code warning appears when a developer has fewer than 20K lines of verified code, or fewer than 300 commits despite claiming experience. It\'s a caution flag to dig deeper, not an automatic rejection.':'20 हज़ार से कम सत्यापित कोड पंक्तियों या अनुभव के दावे के बावजूद 300 से कम कमिट पर “कम कोड” चेतावनी दिखती है। यह और जाँचने का संकेत है, सीधा अस्वीकार नहीं।',
+  'Click the 🎙 button next to the search bar. Veriffy uses the Web Speech API (available in Chrome and Edge). Speak the name, skill, or location and the platform will search instantly.':'खोज पट्टी के पास 🎙 दबाएँ। Veriffy Web Speech API से आपका नाम, कौशल या स्थान वाला सवाल पहचानकर तुरंत खोजता है।',
+  'Toggle between dark and light mode using the 🌙 button in the header or the Settings panel. The theme preference is applied immediately across the entire interface.':'हेडर के 🌙 बटन या सेटिंग्स से गहरी और हल्की थीम बदलें। चुनी हुई थीम पूरे इंटरफ़ेस पर तुरंत लागू होती है।',
+  'Language switched to English':'भाषा अंग्रेज़ी में बदली गई','Language switched to Hindi':'भाषा हिंदी में बदली गई','Language switched to Kannada':'भाषा कन्नड़ में बदली गई'
+});
+Object.assign(PAGE_TEXT_I18N.kn, {
+  'The credibility score (0–100) combines: lines of code (40%), commit frequency (30%), project count (20%), and community stars (10%). Developers above 80 are typically Verified. Below 50 gets a Low Code flag, and near-zero commit counts with inflated claims trigger Fraud detection.':'ವಿಶ್ವಾಸಾರ್ಹತೆ ಸ್ಕೋರ್ (0–100) ಕೋಡ್ ಸಾಲುಗಳು (40%), ಕಮಿಟ್ ಆವರ್ತನೆ (30%), ಪ್ರಾಜೆಕ್ಟ್ ಸಂಖ್ಯೆ (20%) ಮತ್ತು ಸಮುದಾಯದ ಸ್ಟಾರ್‌ಗಳನ್ನು (10%) ಒಳಗೊಂಡಿದೆ. 80 ಕ್ಕಿಂತ ಹೆಚ್ಚು ಸಾಮಾನ್ಯವಾಗಿ ಪರಿಶೀಲಿತ. 50 ಕ್ಕಿಂತ ಕಡಿಮೆ ಕಡಿಮೆ ಕೋಡ್ ಸೂಚನೆ; ಅತಿ ಕಡಿಮೆ ಕಮಿಟ್ ಮತ್ತು ಅತಿರೇಕದ ಹೇಳಿಕೆ ವಂಚನೆ ಸೂಚಿಸುತ್ತದೆ。',
+  'Fraud is detected when: claimed experience is ≥5 years but commits are <10, stars appear fabricated, or GitHub profile is absent. Fraud accounts are highlighted in red with a blinking ⚠ badge across the platform.':'5 ಅಥವಾ ಹೆಚ್ಚು ವರ್ಷ ಅನುಭವವೆಂದು ಹೇಳಿ 10 ಕ್ಕಿಂತ ಕಡಿಮೆ ಕಮಿಟ್ ಇದ್ದರೆ, ಸ್ಟಾರ್‌ಗಳು ನಕಲಿಯಂತೆ ಕಂಡರೆ ಅಥವಾ GitHub ಪ್ರೊಫೈಲ್ ಇಲ್ಲದಿದ್ದರೆ ವಂಚನೆ ಸೂಚಿಸಲಾಗುತ್ತದೆ. ಖಾತೆಗಳು ಕೆಂಪು ಬಣ್ಣದಲ್ಲಿ ⚠ ಚಿಹ್ನೆಯೊಂದಿಗೆ ಕಾಣುತ್ತವೆ。',
+  'A developer earns the Verified badge when their credibility score exceeds 75, they have a linked GitHub with consistent commit history, and at least 3 projects with real code authorship.':'ಸ್ಕೋರ್ 75 ಕ್ಕಿಂತ ಹೆಚ್ಚು, GitHub ನಲ್ಲಿ ನಿರಂತರ ಕಮಿಟ್‌ಗಳು ಮತ್ತು ನಿಜವಾದ ಕೋಡ್ ಕೊಡುಗೆಯ ಕನಿಷ್ಠ 3 ಪ್ರಾಜೆಕ್ಟ್ ಇದ್ದರೆ ಪರಿಶೀಲಿತ ಬ್ಯಾಡ್ಜ್ ಸಿಗುತ್ತದೆ。',
+  'The Low Code warning appears when a developer has fewer than 20K lines of verified code, or fewer than 300 commits despite claiming experience. It\'s a caution flag to dig deeper, not an automatic rejection.':'20 ಸಾವಿರಕ್ಕಿಂತ ಕಡಿಮೆ ಪರಿಶೀಲಿತ ಕೋಡ್ ಸಾಲುಗಳು ಅಥವಾ ಅನುಭವದ ಹೇಳಿಕೆಯಿದ್ದರೂ 300 ಕ್ಕಿಂತ ಕಡಿಮೆ ಕಮಿಟ್ ಇದ್ದರೆ ಕಡಿಮೆ ಕೋಡ್ ಎಚ್ಚರಿಕೆ ಬರುತ್ತದೆ. ಇದು ಇನ್ನಷ್ಟು ಪರಿಶೀಲಿಸಲು ಸೂಚನೆ, ತಕ್ಷಣದ ನಿರಾಕರಣೆ ಅಲ್ಲ。',
+  'Click the 🎙 button next to the search bar. Veriffy uses the Web Speech API (available in Chrome and Edge). Speak the name, skill, or location and the platform will search instantly.':'ಹುಡುಕಾಟದ ಪಕ್ಕದ 🎙 ಬಟನ್ ಒತ್ತಿ. Veriffy Web Speech API ಬಳಸಿ ಹೆಸರು, ಕೌಶಲ್ಯ ಅಥವಾ ಸ್ಥಳವನ್ನು ಗುರುತಿಸಿ ತಕ್ಷಣ ಹುಡುಕುತ್ತದೆ。',
+  'Toggle between dark and light mode using the 🌙 button in the header or the Settings panel. The theme preference is applied immediately across the entire interface.':'ಹೆಡರ್‌ನ 🌙 ಬಟನ್ ಅಥವಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ ಡಾರ್ಕ್ ಮತ್ತು ಲೈಟ್ ಥೀಮ್ ಬದಲಿಸಿ. ಆಯ್ಕೆಯು ಇಡೀ ಇಂಟರ್‌ಫೇಸ್‌ಗೆ ತಕ್ಷಣ ಅನ್ವಯಿಸುತ್ತದೆ。',
+  'Language switched to English':'ಭಾಷೆಯನ್ನು ಇಂಗ್ಲಿಷ್‌ಗೆ ಬದಲಿಸಲಾಗಿದೆ','Language switched to Hindi':'ಭಾಷೆಯನ್ನು ಹಿಂದಿಗೆ ಬದಲಿಸಲಾಗಿದೆ','Language switched to Kannada':'ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಿಸಲಾಗಿದೆ'
+});
+
+Object.assign(PAGE_TEXT_I18N.hi, {
+  Developers:'डेवलपर', developers:'डेवलपर', 'Number of Developers':'डेवलपरों की संख्या', 'Fraud':'धोखाधड़ी',
+  'Elite (1000+)':'एलीट (1000+)','Senior (500–999)':'वरिष्ठ (500–999)','Mid (200–499)':'मध्यम (200–499)','Junior (<200)':'कनिष्ठ (<200)',
+  'Language switched to English':'भाषा अंग्रेज़ी में बदली गई','Language switched to Hindi':'भाषा हिंदी में बदली गई','Language switched to Kannada':'भाषा कन्नड़ में बदली गई',
+  'Please enter the developer name':'डेवलपर का नाम दर्ज करें','Please enter a GitHub repository URL':'GitHub रिपॉज़िटरी URL दर्ज करें',
+  'Enter a valid HTTPS GitHub repository URL (github.com/owner/repository)':'मान्य HTTPS GitHub रिपॉज़िटरी URL दर्ज करें (github.com/owner/repository)',
+  'Please sign in before analyzing a project':'प्रोजेक्ट का विश्लेषण करने से पहले साइन इन करें','Please select an answer first':'पहले एक उत्तर चुनें',
+  'Please type your answer':'अपना उत्तर लिखें','Time up! Next question.':'समय समाप्त! अगला प्रश्न।','No developers found':'कोई डेवलपर नहीं मिला',
+  'How do I use the recruiter dashboard?':'भर्ती डैशबोर्ड कैसे इस्तेमाल करें?','How is credibility score calculated?':'विश्वसनीयता स्कोर कैसे तय होता है?',
+  'As salted hashes':'सॉल्टेड हैश के रूप में','As plain text':'सादे पाठ में','In a URL':'URL में','In browser storage':'ब्राउज़र स्टोरेज में',
+  'Only the author name':'केवल लेखक का नाम','Only the file count':'केवल फ़ाइलों की संख्या','Nothing about setup':'सेटअप के बारे में कुछ नहीं',
+  'A random input':'कोई भी इनपुट','No assertions':'कोई जाँच नहीं','A longer name':'लंबा नाम','Make code run faster':'कोड को तेज़ चलाना','Replace tests':'टेस्ट की जगह लेना','Store passwords':'पासवर्ड रखना',
+  'Retry forever':'बार-बार कोशिश करते रहें','Skip validation':'जाँच छोड़ दें','Use a longer timeout':'अधिक समय सीमा रखें',
+  'By string concatenation':'स्ट्रिंग जोड़कर','As a table name':'टेबल नाम के रूप में','With HTML escaping only':'केवल HTML एस्केप करके',
+  'Rewrite everything':'सब कुछ फिर से लिखें','Add random caching':'अनियमित कैशिंग जोड़ें','Remove all logs':'सभी लॉग हटाएँ',
+  'Smaller text':'छोटा पाठ','More animation':'अधिक एनीमेशन','Hidden labels':'छिपे लेबल',
+  'Change many files':'कई फ़ाइलें बदलें','Delete the logs':'लॉग हटाएँ','Rewrite the app':'ऐप फिर से लिखें',
+  'As a list not a set':'सेट के बजाय सूची','Add a guard':'सुरक्षा जाँच जोड़ें','Use a map':'मैप इस्तेमाल करें','Run a profiler':'प्रोफाइलर चलाएँ',
+  'What will happen at the marked line?':'चिह्नित पंक्ति पर क्या होगा?','What does this function do?':'यह फ़ंक्शन क्या करता है?'
+});
+
+Object.assign(PAGE_TEXT_I18N.kn, {
+  Developers:'ಡೆವಲಪರ್‌ಗಳು', developers:'ಡೆವಲಪರ್‌ಗಳು','Number of Developers':'ಡೆವಲಪರ್‌ಗಳ ಸಂಖ್ಯೆ','Fraud':'ವಂಚನೆ',
+  'Elite (1000+)':'ಎಲೈಟ್ (1000+)','Senior (500–999)':'ಹಿರಿಯ (500–999)','Mid (200–499)':'ಮಧ್ಯಮ (200–499)','Junior (<200)':'ಕಿರಿಯ (<200)',
+  'Language switched to English':'ಭಾಷೆಯನ್ನು ಇಂಗ್ಲಿಷ್‌ಗೆ ಬದಲಿಸಲಾಗಿದೆ','Language switched to Hindi':'ಭಾಷೆಯನ್ನು ಹಿಂದಿಗೆ ಬದಲಿಸಲಾಗಿದೆ','Language switched to Kannada':'ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಿಸಲಾಗಿದೆ',
+  'Please enter the developer name':'ಡೆವಲಪರ್ ಹೆಸರನ್ನು ನಮೂದಿಸಿ','Please enter a GitHub repository URL':'GitHub ರೆಪೊಸಿಟರಿ URL ನಮೂದಿಸಿ',
+  'Enter a valid HTTPS GitHub repository URL (github.com/owner/repository)':'ಮಾನ್ಯ HTTPS GitHub ರೆಪೊಸಿಟರಿ URL ನಮೂದಿಸಿ (github.com/owner/repository)',
+  'Please sign in before analyzing a project':'ಪ್ರಾಜೆಕ್ಟ್ ವಿಶ್ಲೇಷಿಸುವ ಮೊದಲು ಸೈನ್ ಇನ್ ಮಾಡಿ','Please select an answer first':'ಮೊದಲು ಉತ್ತರ ಆಯ್ಕೆಮಾಡಿ',
+  'Please type your answer':'ನಿಮ್ಮ ಉತ್ತರವನ್ನು ಬರೆಯಿರಿ','Time up! Next question.':'ಸಮಯ ಮುಗಿದಿದೆ! ಮುಂದಿನ ಪ್ರಶ್ನೆ.',
+  'How do I use the recruiter dashboard?':'ನೇಮಕಾತಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಹೇಗೆ ಬಳಸುವುದು?','As salted hashes':'ಸಾಲ್ಟ್ ಮಾಡಿದ ಹ್ಯಾಶ್‌ಗಳಾಗಿ','As plain text':'ಸರಳ ಪಠ್ಯವಾಗಿ','In a URL':'URL ನಲ್ಲಿ','In browser storage':'ಬ್ರೌಸರ್ ಸಂಗ್ರಹಣೆಯಲ್ಲಿ',
+  'Only the author name':'ಲೇಖಕರ ಹೆಸರು ಮಾತ್ರ','Only the file count':'ಫೈಲ್‌ಗಳ ಸಂಖ್ಯೆ ಮಾತ್ರ','Nothing about setup':'ಸೆಟಪ್ ಬಗ್ಗೆ ಏನೂ ಇಲ್ಲ',
+  'A random input':'ಯಾದೃಚ್ಛಿಕ ಇನ್‌ಪುಟ್','No assertions':'ಯಾವುದೇ ದೃಢೀಕರಣ ಇಲ್ಲ','A longer name':'ಉದ್ದವಾದ ಹೆಸರು','Make code run faster':'ಕೋಡ್ ವೇಗವಾಗಿ ನಡೆಯುವಂತೆ ಮಾಡುವುದು','Replace tests':'ಟೆಸ್ಟ್‌ಗಳ ಬದಲಿಗೆ ಬಳಸುವುದು','Store passwords':'ಪಾಸ್‌ವರ್ಡ್ ಸಂಗ್ರಹಿಸುವುದು',
+  'Retry forever':'ನಿರಂತರವಾಗಿ ಮರುಪ್ರಯತ್ನಿಸಿ','Skip validation':'ಪರಿಶೀಲನೆ ಬಿಟ್ಟುಬಿಡಿ','Use a longer timeout':'ಹೆಚ್ಚಿನ ಸಮಯ ಮಿತಿ ಬಳಸಿ','By string concatenation':'ಸ್ಟ್ರಿಂಗ್ ಜೋಡಿಸುವ ಮೂಲಕ',
+  'As a table name':'ಟೇಬಲ್ ಹೆಸರಾಗಿ','With HTML escaping only':'HTML escaping ಮಾತ್ರ ಬಳಸಿ','Rewrite everything':'ಎಲ್ಲವನ್ನೂ ಮರುಬರೆಯಿರಿ','Add random caching':'ಯಾದೃಚ್ಛಿಕ ಕ್ಯಾಶಿಂಗ್ ಸೇರಿಸಿ','Remove all logs':'ಎಲ್ಲ ಲಾಗ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕಿ',
+  'Smaller text':'ಚಿಕ್ಕ ಪಠ್ಯ','More animation':'ಹೆಚ್ಚು ಅನಿಮೇಷನ್','Hidden labels':'ಮರೆಮಾಡಿದ ಲೇಬಲ್‌ಗಳು','Change many files':'ಹಲವು ಫೈಲ್‌ಗಳನ್ನು ಬದಲಿಸಿ','Delete the logs':'ಲಾಗ್‌ಗಳನ್ನು ಅಳಿಸಿ','Rewrite the app':'ಆ್ಯಪ್ ಮರುಬರೆಯಿರಿ',
+  'What will happen at the marked line?':'ಗುರುತಿಸಿದ ಸಾಲಿನಲ್ಲಿ ಏನಾಗುತ್ತದೆ?','What does this function do?':'ಈ ಫಂಕ್ಷನ್ ಏನು ಮಾಡುತ್ತದೆ?'
+});
+
+const translatedTextSources = new WeakMap();
+function translatePageText() {
+  const dictionary = PAGE_TEXT_I18N[currentLang] || {};
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    const parent = node.parentElement;
+    if (!parent || parent.closest('script,style,code,pre,[data-i18n]')) continue;
+    if (!translatedTextSources.has(node)) translatedTextSources.set(node, node.nodeValue);
+    const original = translatedTextSources.get(node);
+    const trimmed = original.trim();
+    const translated = currentLang === 'en' ? original : translateDynamicText(trimmed, dictionary);
+    if (node.nodeValue !== translated) node.nodeValue = translated;
+  }
+  document.querySelectorAll('[placeholder],[title],[aria-label]').forEach(el => {
+    for (const attr of ['placeholder','title','aria-label']) {
+      if (!el.hasAttribute(attr) || el.hasAttribute(`data-i18n-${attr}`)) continue;
+      const key = `data-original-${attr}`;
+      if (!el.hasAttribute(key)) el.setAttribute(key, el.getAttribute(attr));
+      const original = el.getAttribute(key);
+      el.setAttribute(attr, currentLang === 'en' ? original : (dictionary[original] || original));
+    }
+  });
+}
+
+function translateDynamicText(text, dictionary) {
+  if (dictionary[text]) return dictionary[text];
+  if (currentLang === 'hi') {
+    let match = text.match(/^Developer: (.+) · (.+)$/);
+    if (match) return `डेवलपर: ${match[1]} · ${match[2]}`;
+    match = text.match(/^Q (\d+) of (\d+)$/);
+    if (match) return `प्रश्न ${match[1]} / ${match[2]}`;
+    match = text.match(/^(\d+) results? for "(.+)"$/);
+    if (match) return `"${match[2]}" के लिए ${match[1]} परिणाम`;
+    match = text.match(/^(Demo estimate|Verification Report|Credibility Report) — (.+)$/);
+    if (match) return `${translateDynamicText(match[1], dictionary)} — ${match[2]}`;
+    match = text.match(/^(\d+)\/(\d+) correct$/);
+    if (match) return `${match[1]}/${match[2]} सही उत्तर`;
+    match = text.match(/^Q(\d+): (.+)$/);
+    if (match) return `प्रश्न ${match[1]}: ${match[2]}`;
+    match = text.match(/^(.+) · (.+) · Meets the 50% verification threshold$/);
+    if (match) return `${match[1]} · ${match[2]} · 50% सत्यापन सीमा पूरी हुई`;
+    match = text.match(/^(.+) · (.+) · Below the 50% threshold — verification denied$/);
+    if (match) return `${match[1]} · ${match[2]} · 50% से कम — सत्यापन असफल`;
+    match = text.match(/^(.+) passed verification!$/);
+    if (match) return `${match[1]} का सत्यापन सफल हुआ!`;
+    match = text.match(/^(.+) failed — score (\d+)%$/);
+    if (match) return `${match[1]} असफल — स्कोर ${match[2]}%`;
+  } else if (currentLang === 'kn') {
+    let match = text.match(/^Developer: (.+) · (.+)$/);
+    if (match) return `ಡೆವಲಪರ್: ${match[1]} · ${match[2]}`;
+    match = text.match(/^Q (\d+) of (\d+)$/);
+    if (match) return `ಪ್ರಶ್ನೆ ${match[1]} / ${match[2]}`;
+    match = text.match(/^(\d+) results? for "(.+)"$/);
+    if (match) return `"${match[2]}" ಗಾಗಿ ${match[1]} ಫಲಿತಾಂಶಗಳು`;
+    match = text.match(/^(Demo estimate|Verification Report|Credibility Report) — (.+)$/);
+    if (match) return `${translateDynamicText(match[1], dictionary)} — ${match[2]}`;
+    match = text.match(/^(\d+)\/(\d+) correct$/);
+    if (match) return `${match[1]}/${match[2]} ಸರಿಯಾದ ಉತ್ತರಗಳು`;
+    match = text.match(/^Q(\d+): (.+)$/);
+    if (match) return `ಪ್ರಶ್ನೆ ${match[1]}: ${match[2]}`;
+    match = text.match(/^(.+) · (.+) · Meets the 50% verification threshold$/);
+    if (match) return `${match[1]} · ${match[2]} · 50% ಪರಿಶೀಲನಾ ಮಿತಿ ತಲುಪಿದೆ`;
+    match = text.match(/^(.+) · (.+) · Below the 50% threshold — verification denied$/);
+    if (match) return `${match[1]} · ${match[2]} · 50% ಕ್ಕಿಂತ ಕಡಿಮೆ — ಪರಿಶೀಲನೆ ವಿಫಲ`;
+    match = text.match(/^(.+) passed verification!$/);
+    if (match) return `${match[1]} ಪರಿಶೀಲನೆ ಯಶಸ್ವಿಯಾಗಿದೆ!`;
+    match = text.match(/^(.+) failed — score (\d+)%$/);
+    if (match) return `${match[1]} ವಿಫಲ — ಸ್ಕೋರ್ ${match[2]}%`;
+  }
+  return text;
+}
+
+let pageTranslationObserver;
+function observeDynamicTranslations() {
+  if (pageTranslationObserver || !document.body) return;
+  pageTranslationObserver = new MutationObserver(() => {
+    clearTimeout(observeDynamicTranslations.timer);
+    observeDynamicTranslations.timer = setTimeout(translatePageText, 30);
+  });
+  pageTranslationObserver.observe(document.body, {subtree:true, childList:true, characterData:true});
+}
 
 /* ── FAQ DATA ───────────────────────────────────────────── */
 const FAQS = [
@@ -329,7 +723,7 @@ const AI_RESPONSES = [
   { keys:["low code","lowcode","few","small"], ans:"The Low Code warning appears when a developer has fewer than 20K lines of verified code, or fewer than 300 commits despite claiming experience. It's a caution flag to dig deeper, not an automatic rejection." },
   { keys:["upload","analyze","project","github"], ans:"The Project Analyzer takes a developer's name, GitHub URL, primary language, and description. It simulates an analysis using our scoring algorithm and returns a full credibility breakdown including complexity score, commit depth, and authenticity verdict." },
   { keys:["voice","speak","microphone","search"], ans:"Click the 🎙 button next to the search bar. Veriffy uses the Web Speech API (available in Chrome and Edge). Speak the name, skill, or location and the platform will search instantly." },
-  { keys:["leaderboard","top","ranking","best"], ans:"The leaderboard shows the Top 5 developers sorted by credibility score. It's designed for recruiters who want to instantly see who the most trustworthy candidates are." },
+  { keys:["leaderboard","top","ranking","best"], ans:"The leaderboard ranks developers by their credibility score, with verified project submissions included." },
   { keys:["recruiter","hire","hiring","dashboard"], ans:"Recruiters get a dedicated Quick View dashboard with four charts: score distribution, status breakdown (verified/low-code/fraud), activity tiers, and specialty distribution. It's designed for fast decisions — under 60 seconds to assess any developer." },
   { keys:["language","hindi","kannada","english"], ans:"Veriffy supports English, Hindi (हिन्दी), and Kannada (ಕನ್ನಡ). Use the language dropdown in the header or Settings to switch. The entire UI including labels, buttons, and sections will update." },
   { keys:["dark","light","theme","mode"], ans:"Toggle between dark and light mode using the 🌙 button in the header or the Settings panel. The theme preference is applied immediately across the entire interface." },
@@ -341,11 +735,31 @@ let currentSearch = '';
 let currentSearchRec = '';
 let charts = {};
 
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[char]);
+}
+
+function isGitHubRepoUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' &&
+      ['github.com', 'www.github.com'].includes(url.hostname) &&
+      url.pathname.split('/').filter(Boolean).length >= 2;
+  } catch {
+    return false;
+  }
+}
+
 /* ══════════════════════════════════════════════════════════
    INIT
 ══════════════════════════════════════════════════════════ */
 window.addEventListener('DOMContentLoaded', () => {
+  loadUploadedDevelopers();
   createParticles();
+  observeDynamicTranslations();
+  bindRoleNavigation();
   // Content will be shown after login based on role
   // pre-warm data but don't render into hidden views yet
 });
@@ -384,8 +798,9 @@ function toggleTheme() {
 
 /* ── i18n ───────────────────────────────────────────────── */
 function switchLang(lang) {
-  currentLang = lang;
-  const dict = I18N[lang] || I18N.en;
+  currentLang = I18N[lang] ? lang : 'en';
+  const dict = I18N[currentLang] || I18N.en;
+  document.documentElement.lang = currentLang;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) el.innerHTML = dict[key];
@@ -395,14 +810,70 @@ function switchLang(lang) {
     if (dict[key]) el.placeholder = dict[key];
   });
   // Sync both selects
-  document.getElementById('langSelect').value = lang;
-  document.getElementById('langSelect2').value = lang;
-  showToast(`Language switched to ${lang === 'en' ? 'English' : lang === 'hi' ? 'Hindi' : 'Kannada'}`, 'success');
+  document.getElementById('langSelect').value = currentLang;
+  document.getElementById('langSelect2').value = currentLang;
+  translatePageText();
+  updateRoleNavigation();
+  document.title = currentLang === 'en' ? 'Veriffy — Proof-of-Work Developer Platform' :
+    currentLang === 'hi' ? 'Veriffy — काम के प्रमाण पर आधारित डेवलपर प्लेटफ़ॉर्म' :
+    'Veriffy — ಕೆಲಸದ ಸಾಕ್ಷ್ಯ ಆಧಾರಿತ ಡೆವಲಪರ್ ವೇದಿಕೆ';
+  if (charts.dist) { destroyCharts(); initCharts(); }
+  showToast(`Language switched to ${currentLang === 'en' ? 'English' : currentLang === 'hi' ? 'Hindi' : 'Kannada'}`, 'success');
 }
 
 /* ── SCROLL TO TOP ──────────────────────────────────────── */
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const ROLE_NAV_TARGETS = {
+  developer: {dashboard:'heroSection', developers:'devSearch', leaderboard:'devLeaderboard', upload:'devUpload', help:'devHelp'},
+  recruiter: {dashboard:'dashboard', developers:'profiles', leaderboard:'recLeaderboard', upload:'recSearch', help:'recHelp'}
+};
+
+function updateRoleNavigation() {
+  const role = currentUser?.role;
+  if (!role || !ROLE_NAV_TARGETS[role]) return;
+  const dict = I18N[currentLang] || I18N.en;
+  document.querySelectorAll('.nav-a').forEach(link => {
+    const rawKey = link.dataset.i18n?.replace(/^nav_/, '') || link.dataset.navKey || link.hash.replace(/^#/, '');
+    const key = rawKey === 'profiles' ? 'developers' : rawKey;
+    link.dataset.navKey = key;
+    link.style.display = role === 'developer' && key === 'developers' ? 'none' : '';
+    const targetId = ROLE_NAV_TARGETS[role][key];
+    if (targetId) link.href = `#${targetId}`;
+    const i18nKey = link.dataset.i18n;
+    if (role === 'recruiter' && key === 'upload') {
+      link.textContent = currentLang === 'hi' ? 'खोजें' : currentLang === 'kn' ? 'ಹುಡುಕಿ' : 'Search';
+    } else if (i18nKey && dict[i18nKey]) {
+      link.textContent = dict[i18nKey];
+    }
+  });
+}
+
+function bindRoleNavigation() {
+  document.querySelectorAll('.nav-a').forEach(link => {
+    const rawKey = link.dataset.i18n?.replace(/^nav_/, '') || link.hash.replace(/^#/, '');
+    link.dataset.navKey = rawKey === 'profiles' ? 'developers' : rawKey;
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const role = currentUser?.role;
+      if (!role) {
+        showToast(currentLang === 'hi' ? 'इस अनुभाग को देखने के लिए साइन इन करें' : currentLang === 'kn' ? 'ಈ ವಿಭಾಗ ನೋಡಲು ಸೈನ್ ಇನ್ ಮಾಡಿ' : 'Sign in to open this section', 'info');
+        return;
+      }
+      const targetId = ROLE_NAV_TARGETS[role]?.[link.dataset.navKey];
+      const target = targetId && document.getElementById(targetId);
+      if (!target) {
+        showToast(currentLang === 'hi' ? 'यह अनुभाग उपलब्ध नहीं है' : currentLang === 'kn' ? 'ಈ ವಿಭಾಗ ಲಭ್ಯವಿಲ್ಲ' : 'Section not found', 'error');
+        return;
+      }
+      const activeView = document.getElementById(role === 'developer' ? 'developerView' : 'recruiterView');
+      if (activeView && getComputedStyle(activeView).display === 'none') showRoleView(role);
+      history.replaceState(null, '', `#${targetId}`);
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
 }
 
 /* ── STATS ──────────────────────────────────────────────── */
@@ -446,6 +917,7 @@ function destroyCharts() {
 
 function initCharts() {
   const d = getChartDefaults();
+  const chartText = text => (PAGE_TEXT_I18N[currentLang] || {})[text] || text;
 
   // 1. Score Distribution Bar
   const scoreRanges = [0, 0, 0, 0, 0]; // 0-20,21-40,41-60,61-80,81-100
@@ -458,20 +930,20 @@ function initCharts() {
     data: {
       labels: ['0–20', '21–40', '41–60', '61–80', '81–100'],
       datasets: [{
-        label: 'Developers',
+        label: chartText('Developers'),
         data: scoreRanges,
         backgroundColor: ['#ef4444','#f87171','#fbbf24','#60a5fa','#22c55e'],
         borderRadius: 8, borderSkipped: false,
       }]
     },
-    options: chartOpts(d, 'Number of Developers')
+    options: chartOpts(d, chartText('Number of Developers'))
   });
 
   // 2. Status Doughnut
   charts.status = new Chart(document.getElementById('chartStatus'), {
     type: 'doughnut',
     data: {
-      labels: ['Verified', 'Low Code', 'Fraud'],
+      labels: ['Verified', 'Low Code', 'Fraud'].map(chartText),
       datasets: [{
         data: [
           DEVS.filter(d=>d.status==='verified').length,
@@ -489,7 +961,7 @@ function initCharts() {
       cutout: '65%',
       plugins: {
         legend: { position:'bottom', labels: { color: d.textColor, padding:16, font:{size:12,weight:'600'} } },
-        tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} devs` } }
+        tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} ${chartText('developers')}` } }
       }
     }
   });
@@ -505,9 +977,9 @@ function initCharts() {
   charts.commit = new Chart(document.getElementById('chartCommit'), {
     type: 'bar',
     data: {
-      labels: Object.keys(tiers),
+      labels: Object.keys(tiers).map(chartText),
       datasets: [{
-        label: 'Developers',
+        label: chartText('Developers'),
         data: Object.values(tiers),
         backgroundColor: ['#22c55e','#3b82f6','#fbbf24','#ef4444'],
         borderRadius: 8, borderSkipped: false,
@@ -527,7 +999,7 @@ function initCharts() {
     data: {
       labels: topSpecs.map(s=>s[0].split('/')[0].trim()),
       datasets: [{
-        label: 'Developers',
+        label: chartText('Developers'),
         data: topSpecs.map(s=>s[1]),
         backgroundColor: 'rgba(34,197,94,0.15)',
         borderColor: '#22c55e',
@@ -569,14 +1041,14 @@ function renderLeaderboard() {
 function renderLeaderboardIn(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
-  const sorted = [...DEVS].filter(d=>d.status!=='fraud').sort((a,b)=>b.score-a.score).slice(0,5);
+  const sorted = [...DEVS].filter(d=>d.status!=='fraud').sort((a,b)=>b.score-a.score);
   container.innerHTML = sorted.map((dev, i) => `
     <div class="lb-row" onclick="openDevModal(${dev.id})">
       <div class="lb-rank ${i===0?'lb-rank-1':i===1?'lb-rank-2':i===2?'lb-rank-3':'lb-rank-n'}">${i+1}</div>
-      <div class="lb-avatar" style="background:${dev.color}22;color:${dev.color}">${dev.initials}</div>
+      <div class="lb-avatar" style="background:${dev.color}22;color:${dev.color}">${escapeHTML(dev.initials)}</div>
       <div class="lb-info">
-        <div class="lb-name">${dev.name}</div>
-        <div class="lb-title">${dev.specialty} · ${dev.location}</div>
+        <div class="lb-name">${escapeHTML(dev.name)}</div>
+        <div class="lb-title">${escapeHTML(dev.specialty)} · ${escapeHTML(dev.location)}</div>
       </div>
       <div>
         <div class="lb-bar-wrap">
@@ -592,6 +1064,19 @@ function renderLeaderboardIn(containerId) {
       el.style.width = el.getAttribute('data-w') + '%';
     });
   }, 200);
+}
+
+function loadUploadedDevelopers() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('veriffyUploadedDevelopers') || '[]');
+    if (Array.isArray(saved)) {
+      const knownRepos = new Set(DEVS.map(dev => dev.repoUrl).filter(Boolean));
+      saved.filter(dev => dev && Number.isFinite(dev.id) && !knownRepos.has(dev.repoUrl))
+        .forEach(dev => DEVS.push(dev));
+    }
+  } catch (error) {
+    console.warn('Could not restore uploaded developer profiles.', error);
+  }
 }
 
 /* ── PROFILE RENDERING ──────────────────────────────────── */
@@ -624,14 +1109,14 @@ function renderDevCard(dev, role) {
     ${isFraud ? `<div class="fraud-banner"><span>⚠ FRAUD ACCOUNT DETECTED</span></div>` : ''}
     <div class="dev-card-banner" style="background:${bannerBg}"></div>
     <div class="dev-card-body">
-      <div class="dev-avatar" style="background:${dev.color}18;color:${dev.color}">${dev.initials}</div>
-      <div class="dev-name" style="color:${isFraud ? 'var(--red)' : 'var(--text)'}">${dev.name}</div>
-      <div class="dev-title">${dev.title}</div>
-      <div class="dev-loc">📍 ${dev.location}</div>
-      <div class="dev-specialty">⚡ ${dev.specialty}</div>
+      <div class="dev-avatar" style="background:${dev.color}18;color:${dev.color}">${escapeHTML(dev.initials)}</div>
+      <div class="dev-name" style="color:${isFraud ? 'var(--red)' : 'var(--text)'}">${escapeHTML(dev.name)}</div>
+      <div class="dev-title">${escapeHTML(dev.title)}</div>
+      <div class="dev-loc">📍 ${escapeHTML(dev.location)}</div>
+      <div class="dev-specialty">⚡ ${escapeHTML(dev.specialty)}</div>
       <div class="dev-badges">
         ${statusBadge(dev.status)}
-        ${dev.skills.slice(0,3).map(s=>`<span class="badge badge-cyan">${s}</span>`).join('')}
+        ${dev.skills.slice(0,3).map(s=>`<span class="badge badge-cyan">${escapeHTML(s)}</span>`).join('')}
       </div>
       <div class="dev-score-row">
         <div class="dev-score-num ${scoreClass(dev.score)}">${dev.score}</div>
@@ -781,7 +1266,7 @@ function openDevModal(id) {
 
   content.innerHTML = `
     <div class="modal-header" style="background:${isFraud?'rgba(239,68,68,0.1)':'var(--card)'}">
-      <h3>${isFraud?'⚠ FRAUD: ':''}${dev.name}</h3>
+      <h3>${isFraud?'⚠ FRAUD: ':''}${escapeHTML(dev.name)}</h3>
       <button class="icon-btn" onclick="document.getElementById('devModal').classList.remove('open')">×</button>
     </div>
     ${isFraud ? `<div style="background:rgba(239,68,68,0.12);border-bottom:1px solid rgba(239,68,68,0.3);padding:12px 20px;display:flex;gap:10px;align-items:center">
@@ -792,16 +1277,16 @@ function openDevModal(id) {
     <div class="modal-banner" style="background:${isFraud?'linear-gradient(135deg,rgba(239,68,68,0.3),rgba(239,68,68,0.05))':
       `linear-gradient(135deg,${dev.color}40,${dev.color}10)`}"></div>
     <div class="modal-avatar-row">
-      <div class="modal-avatar" style="background:${dev.color}22;color:${dev.color}">${dev.initials}</div>
+      <div class="modal-avatar" style="background:${dev.color}22;color:${dev.color}">${escapeHTML(dev.initials)}</div>
       <div>${statusBadge(dev.status)}</div>
     </div>
     <div class="modal-info">
-      <div class="modal-name" style="color:${isFraud?'var(--red)':'var(--text)'}">${dev.name}</div>
-      <div class="modal-sub">${dev.title} · ${dev.location}</div>
-      <div class="modal-sub" style="margin-top:4px">⚡ ${dev.specialty} · ${dev.yoe} years experience</div>
-      <div class="modal-bio">${dev.bio}</div>
+      <div class="modal-name" style="color:${isFraud?'var(--red)':'var(--text)'}">${escapeHTML(dev.name)}</div>
+      <div class="modal-sub">${escapeHTML(dev.title)} · ${escapeHTML(dev.location)}</div>
+      <div class="modal-sub" style="margin-top:4px">⚡ ${escapeHTML(dev.specialty)} · ${dev.yoe} years experience</div>
+      <div class="modal-bio">${escapeHTML(dev.bio)}</div>
       <div class="modal-skills">
-        ${dev.skills.map(s=>`<span class="badge ${isFraud?'badge-red':'badge-cyan'}">${s}</span>`).join('')}
+        ${dev.skills.map(s=>`<span class="badge ${isFraud?'badge-red':'badge-cyan'}">${escapeHTML(s)}</span>`).join('')}
       </div>
     </div>
     <div class="modal-stat-grid">
@@ -825,10 +1310,10 @@ function openDevModal(id) {
       <div style="font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Projects</div>
       ${dev.projectList.map(p=>`
         <div class="modal-proj" style="border-left-color:${isFraud?'var(--red)':'var(--green)'}">
-          <div class="modal-proj-name">${p.name}</div>
-          <div class="modal-proj-desc">${p.desc}</div>
+          <div class="modal-proj-name">${escapeHTML(p.name)}</div>
+          <div class="modal-proj-desc">${escapeHTML(p.desc)}</div>
           <div class="modal-proj-meta">
-            <span style="background:rgba(34,197,94,.1);color:var(--green);padding:2px 8px;border-radius:99px;font-weight:700">${p.lang}</span>
+            <span style="background:rgba(34,197,94,.1);color:var(--green);padding:2px 8px;border-radius:99px;font-weight:700">${escapeHTML(p.lang)}</span>
             <span>★ ${p.stars.toLocaleString()} stars</span>
           </div>
         </div>
@@ -889,15 +1374,15 @@ function analyzeProject() {
 
   if (!name) { showToast('Please enter the developer name', 'error'); return; }
   if (!url)  { showToast('Please enter a GitHub repository URL', 'error'); return; }
-  if (!url.startsWith('http')) { showToast('Enter a valid URL starting with https://', 'error'); return; }
+  if (!isGitHubRepoUrl(url)) { showToast('Enter a valid HTTPS GitHub repository URL (github.com/owner/repository)', 'error'); return; }
   if (!currentUser) { showToast('Please sign in before analyzing a project', 'error'); return; }
 
   const result = document.getElementById('analyzeResult');
   result.innerHTML = `
     <div style="text-align:center;padding:48px 20px;color:var(--text3)">
       <div class="spinner" style="width:40px;height:40px;margin:0 auto 16px;border-width:3px"></div>
-      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Scanning repository…</div>
-      <div style="font-size:12px">Fetching commit history, tech stack, code complexity</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Preparing demo quiz…</div>
+      <div style="font-size:12px">This demo does not fetch or analyze GitHub repository data.</div>
     </div>`;
 
   // After "scan" — auto-launch quiz immediately (no extra button click needed)
@@ -1135,21 +1620,114 @@ WHERE o.id IS NULL;`,
 /* ── Quiz state ── */
 let QZ = {
   devName:'', lang:'', url:'', questions:[],
-  current:0, score:0, timer:null, timeLeft:10, answers:[], active:false
+  current:0, score:0, timer:null, timeLeft:15, answers:[], active:false
 };
 
+const SHORT_LANGUAGE_QUESTIONS = {
+  Python: [
+    {type:'Python', q:'Which keyword starts a function?', opts:['def','func','function','fn'], ans:0},
+    {type:'Python', q:'Which value means “no value”?', opts:['None','null','undefined','void'], ans:0},
+    {type:'Python', q:'Which collection stores unique items?', opts:['set','list','tuple','string'], ans:0}
+  ],
+  JavaScript: [
+    {type:'JavaScript', q:'Which keyword creates a block-scoped constant?', opts:['const','var','static','define'], ans:0},
+    {type:'JavaScript', q:'Which method converts JSON text to an object?', opts:['JSON.parse','JSON.stringify','Object.json','JSON.read'], ans:0},
+    {type:'JavaScript', q:'Which value means “not assigned”?', opts:['undefined','None','nil','empty'], ans:0}
+  ],
+  TypeScript: [
+    {type:'TypeScript', q:'Which type represents text?', opts:['string','text','char','Stringify'], ans:0},
+    {type:'TypeScript', q:'What does `?` mean on a property?', opts:['It is optional','It is private','It is a number','It is readonly'], ans:0},
+    {type:'TypeScript', q:'Which type accepts any string or number?', opts:['string | number','string & number','AnyOf','Both'], ans:0}
+  ],
+  Go: [
+    {type:'Go', q:'Which operator starts a short variable declaration?', opts:[':=','=','->','=>'], ans:0},
+    {type:'Go', q:'What does `defer` do?', opts:['Runs a call when the function returns','Starts a goroutine','Declares a constant','Repeats a loop'], ans:0},
+    {type:'Go', q:'Which keyword handles an error value?', opts:['if err != nil','catch err','except err','when err'], ans:0}
+  ],
+  Rust: [
+    {type:'Rust', q:'Which keyword declares an immutable variable?', opts:['let','var','const let','mut'], ans:0},
+    {type:'Rust', q:'What does `Option` represent?', opts:['A value that may be absent','A list of errors','A thread','A file'], ans:0},
+    {type:'Rust', q:'What does `mut` allow?', opts:['Changing a value','Sharing a value','Returning early','Making a copy'], ans:0}
+  ],
+  Dart: [
+    {type:'Dart', q:'Which keyword declares a value set once?', opts:['final','var','late','dynamic'], ans:0},
+    {type:'Dart', q:'Which widget arranges children vertically?', opts:['Column','Row','Stack','Wrap'], ans:0},
+    {type:'Dart', q:'Which method builds a Flutter widget?', opts:['build','render','create','draw'], ans:0}
+  ],
+  Java: [
+    {type:'Java', q:'Which keyword creates an object?', opts:['new','make','create','alloc'], ans:0},
+    {type:'Java', q:'Which collection stores unique values?', opts:['Set','List','Queue','ArrayList'], ans:0},
+    {type:'Java', q:'Which block handles an exception?', opts:['catch','except','rescue','error'], ans:0}
+  ],
+  'C#': [
+    {type:'C#', q:'Which keyword creates an object?', opts:['new','make','create','alloc'], ans:0},
+    {type:'C#', q:'Which type represents true or false?', opts:['bool','byte','char','decimal'], ans:0},
+    {type:'C#', q:'Which block handles an exception?', opts:['catch','except','rescue','error'], ans:0}
+  ],
+  'C++': [
+    {type:'C++', q:'Which container is a dynamic array?', opts:['std::vector','std::map','std::set','std::queue'], ans:0},
+    {type:'C++', q:'Which symbol accesses a pointer member?', opts:['->','.','::','&'], ans:0},
+    {type:'C++', q:'Which keyword makes a value immutable?', opts:['const','static','final','fixed'], ans:0}
+  ],
+  Solidity: [
+    {type:'Solidity', q:'Which visibility limits access to this contract?', opts:['private','public','external','global'], ans:0},
+    {type:'Solidity', q:'Which keyword marks a function as read-only?', opts:['view','purely','static','readonly'], ans:0},
+    {type:'Solidity', q:'Where should a contract’s persistent data live?', opts:['storage','memory','stack','cache'], ans:0}
+  ]
+};
+
+const PROJECT_TOPIC_QUESTIONS = [
+  {match:/auth|login|sign.?in|password|account|user management/, type:'Authentication', q:'How should passwords be stored?', opts:['As salted hashes','As plain text','In a URL','In browser storage'], ans:0},
+  {match:/api|backend|server|endpoint|service/, type:'API design', q:'What status code fits invalid input?', opts:['400','200','301','500'], ans:0},
+  {match:/database|sql|postgres|mysql|mongo|sqlite|data stor|orm/, type:'Data storage', q:'What makes a database row uniquely identifiable?', opts:['Primary key','Table name','Index page','Column order'], ans:0},
+  {match:/frontend|website|web app|interface|dashboard|ui|ux|flutter|mobile app/, type:'User interface', q:'What helps keyboard users navigate?', opts:['Visible focus states','Smaller text','More animation','Hidden labels'], ans:0},
+  {match:/test|testing|quality|qa|spec/, type:'Testing', q:'What makes a test useful?', opts:['A clear expected result','A random input','No assertions','A longer name'], ans:0},
+  {match:/payment|checkout|billing|commerce|shop|store|cart/, type:'Payments', q:'How can retries avoid duplicate charges?', opts:['Use an idempotency key','Retry forever','Skip validation','Use a longer timeout'], ans:0},
+  {match:/real.?time|chat|message|live update|websocket|stream/, type:'Real-time updates', q:'What supports two-way live updates?', opts:['WebSocket','CSV file','Static HTML','Cron-only polling'], ans:0},
+  {match:/security|encrypt|privacy|token|secret|permission/, type:'Security', q:'How should SQL input be added to a query?', opts:['With parameters','By string concatenation','As a table name','With HTML escaping only'], ans:0},
+  {match:/performance|speed|scale|cache|large data|optimization/, type:'Performance', q:'What is a good first step for slow code?', opts:['Measure with a profiler','Rewrite everything','Add random caching','Remove all logs'], ans:0}
+];
+
+const GENERAL_PROJECT_QUESTIONS = [
+  {type:'Project basics', q:'What should a good README explain?', opts:['Purpose, setup, and usage','Only the author name','Only the file count','Nothing about setup'], ans:0},
+  {type:'Project basics', q:'What is a useful first step when debugging?', opts:['Reproduce the issue','Change many files','Delete the logs','Rewrite the app'], ans:0},
+  {type:'Project basics', q:'Why use version control?', opts:['Track and review changes','Make code run faster','Replace tests','Store passwords'], ans:0}
+];
+
+function shuffled(items) {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function buildProjectQuestions(lang, url, desc) {
+  const langKey = Object.keys(SHORT_LANGUAGE_QUESTIONS).find(key => key.toLowerCase() === lang.toLowerCase()) || 'JavaScript';
+  const repoName = (() => { try { return new URL(url).pathname.split('/').filter(Boolean).pop() || ''; } catch { return ''; } })();
+  const projectText = `${desc} ${repoName.replace(/[-_]/g, ' ')}`.toLowerCase();
+  const topicQuestions = PROJECT_TOPIC_QUESTIONS.filter(topic => topic.match.test(projectText));
+  if (!topicQuestions.length) {
+    topicQuestions.push({type:'Project basics', q:'What should a good README explain?', opts:['Purpose, setup, and usage','Only the author name','Only the file count','Nothing about setup'], ans:0});
+  }
+  const selectedTopics = shuffled(topicQuestions).slice(0, 2);
+  const languageQuestions = shuffled(SHORT_LANGUAGE_QUESTIONS[langKey]).slice(0, 3);
+  const generalQuestions = shuffled(GENERAL_PROJECT_QUESTIONS).slice(0, 6 - selectedTopics.length - languageQuestions.length);
+  const picked = shuffled([...selectedTopics, ...languageQuestions, ...generalQuestions]);
+  return picked.map(question => {
+    const options = shuffled(question.opts.map((text, index) => ({text, correct:index === question.ans})));
+    return {...question, opts:options.map(option => option.text), ans:options.findIndex(option => option.correct), code:null};
+  });
+}
+
 function launchProjectQuiz(devName, lang, url, desc) {
-  // Build question pool from language + defaults
-  let pool = [];
-  const key = Object.keys(QUIZ_BANK).find(k => lang.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(lang.toLowerCase()));
-  if (key && QUIZ_BANK[key]) pool.push(...QUIZ_BANK[key]);
-  pool.push(...QUIZ_BANK.default);
-  pool = pool.sort(() => Math.random() - .5);
+  const pool = buildProjectQuestions(lang, url, desc);
 
   QZ = {
-    devName, lang, url,
+    devName, lang, url, desc,
     questions: pool.slice(0, 6),
-    current:0, score:0, timer:null, timeLeft:10, answers:[], active:true
+    current:0, score:0, timer:null, timeLeft:15, answers:[], active:true
   };
 
   qzLockNav();
@@ -1195,16 +1773,16 @@ function qzRenderQuestion() {
 
 function qzStartTimer() {
   clearInterval(QZ.timer);
-  QZ.timeLeft = 10;  // 10 seconds per question
+  QZ.timeLeft = 15;
   const el = document.getElementById('quizTimerVal');
-  el.textContent = 10;
+  el.textContent = 15;
   el.className = 'green-time';
 
   QZ.timer = setInterval(() => {
     QZ.timeLeft--;
     el.textContent = Math.max(0, QZ.timeLeft);
-    if (QZ.timeLeft > 6)       el.className = 'green-time';
-    else if (QZ.timeLeft > 3)  el.className = 'yellow-time';
+    if (QZ.timeLeft > 10)      el.className = 'green-time';
+    else if (QZ.timeLeft > 5)  el.className = 'yellow-time';
     else                        el.className = 'blink';
 
     if (QZ.timeLeft <= 0) {
@@ -1270,16 +1848,20 @@ function qzEnd() {
   const verdict = passed ? '✓ Verification Passed' : '✕ Verification Denied';
   const ringPct = `${pct * 3.6}deg`;
 
+  if (passed) addVerifiedDeveloperToLeaderboard({
+    name:QZ.devName, lang:QZ.lang, url:QZ.url, desc:QZ.desc, score:pct
+  });
+
   // Update the analyse result card
   document.getElementById('analyzeResult').innerHTML = `
     <div style="animation:fadeIn .4s ease;text-align:center">
-      <div style="font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px">Verification Report — ${QZ.devName}</div>
+      <div style="font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px">Verification Report — ${escapeHTML(QZ.devName)}</div>
       <div style="width:100px;height:100px;border-radius:50%;background:conic-gradient(${color} ${ringPct},var(--bg2) 0);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto 16px">
         <div style="position:absolute;inset:8px;border-radius:50%;background:var(--card2)"></div>
         <div style="position:relative;font-size:22px;font-weight:900;color:${color};font-family:'JetBrains Mono',monospace">${pct}%</div>
       </div>
       <div style="font-size:18px;font-weight:900;color:${color};margin-bottom:6px">${verdict}</div>
-      <div style="font-size:13px;color:var(--text2);margin-bottom:16px">${QZ.score}/${total} correct · ${QZ.lang} quiz</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:16px">${QZ.score}/${total} correct · ${escapeHTML(QZ.lang)} quiz</div>
       ${passed
         ? `<div class="verified-stamp">✓ Developer Verified on Veriffy</div>`
         : `<div class="denied-stamp">✕ Does not meet verification threshold (50%)</div>`
@@ -1305,7 +1887,7 @@ function qzEnd() {
       <div class="qr-ring-sub">${QZ.score}/${total} correct</div>
     </div>
     <div class="qr-verdict" style="color:${color}">${verdict}</div>
-    <div class="qr-sub">${QZ.devName} · ${QZ.lang} · ${passed ? 'Meets the 50% verification threshold' : 'Below the 50% threshold — verification denied'}</div>
+      <div class="qr-sub">${escapeHTML(QZ.devName)} · ${escapeHTML(QZ.lang)} · ${passed ? 'Meets the 50% verification threshold' : 'Below the 50% threshold — verification denied'}</div>
     ${passed ? `<div class="verified-stamp" style="margin:0 auto">✓ Officially Verified on Veriffy</div>` : `<div class="denied-stamp" style="margin:0 auto">✕ Cannot be verified — needs more practice</div>`}
     <div class="qr-review" style="margin-top:18px">
       ${QZ.answers.map((a,i)=>`
@@ -1327,6 +1909,42 @@ function qzEnd() {
   qzUnlockNav();
   QZ.active = false;
   showToast(passed ? `✓ ${QZ.devName} passed verification!` : `✕ ${QZ.devName} failed — score ${pct}%`, passed ? 'success' : 'error');
+}
+
+function addVerifiedDeveloperToLeaderboard({name, lang, url, desc, score}) {
+  const cleanDesc = String(desc || '').trim();
+  const existing = DEVS.find(dev => dev.repoUrl === url);
+  const repoName = (() => { try { return new URL(url).pathname.split('/').filter(Boolean).pop().replace(/\.git$/i, ''); } catch { return 'Verified Project'; } })();
+  const projectTopic = PROJECT_TOPIC_QUESTIONS.find(topic => topic.match.test(`${cleanDesc} ${repoName.replace(/[-_]/g, ' ')}`.toLowerCase()));
+  const githubUser = (() => { try { return new URL(url).pathname.split('/').filter(Boolean)[0] || ''; } catch { return ''; } })();
+  const profile = {
+    id: existing?.id ?? Math.max(0, ...DEVS.map(dev => Number(dev.id) || 0)) + 1,
+    name: String(name).trim(), initials: String(name).trim().split(/\s+/).map(part => part[0]).join('').slice(0,2).toUpperCase(),
+    color:'#22c55e', title:`${lang} Developer`, location:'Remote',
+    specialty:projectTopic?.type || `${lang} Development`, yoe:0,
+    skills:[lang, ...(projectTopic ? [projectTopic.type] : [])], score, loc:0, commits:0,
+    projects:1, status:'verified', bio:cleanDesc || `Verified ${lang} project: ${repoName}`,
+    github:githubUser, repoUrl:url, stars:0,
+    projectList:[{name:repoName, lang, stars:0, desc:cleanDesc || 'Project verified through the Veriffy quiz.'}],
+    heat:Array(30).fill(0)
+  };
+  if (existing) Object.assign(existing, profile);
+  else DEVS.push(profile);
+
+  try {
+    const uploaded = DEVS.filter(dev => dev.repoUrl);
+    localStorage.setItem('veriffyUploadedDevelopers', JSON.stringify(uploaded));
+  } catch (error) {
+    console.warn('Could not save the verified developer profile.', error);
+  }
+  renderLeaderboardIn('leaderboardListDev');
+  renderLeaderboardIn('leaderboardListRec');
+  renderProfiles();
+  updateStats();
+  if (document.getElementById('chartDist') && typeof Chart !== 'undefined') {
+    destroyCharts();
+    initCharts();
+  }
 }
 
 function closeQuiz() {
@@ -1494,10 +2112,13 @@ function appendMsgTo(text, role, containerId) {
   if (!container) return;
   const div = document.createElement('div');
   div.className = `chat-msg ${role}`;
-  div.innerHTML = `
-    <div class="chat-avatar">${role === 'bot' ? '✓' : '👤'}</div>
-    <div class="chat-bubble">${text}</div>
-  `;
+  const avatar = document.createElement('div');
+  avatar.className = 'chat-avatar';
+  avatar.textContent = role === 'bot' ? '✓' : '👤';
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble';
+  bubble.textContent = text;
+  div.append(avatar, bubble);
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
 }
@@ -1511,14 +2132,14 @@ function analyzeProjectRec() {
 
   if (!name) { showToast('Please enter the developer name', 'error'); return; }
   if (!url)  { showToast('Please enter a GitHub repository URL', 'error'); return; }
-  if (!url.startsWith('http')) { showToast('Enter a valid URL starting with https://', 'error'); return; }
+  if (!isGitHubRepoUrl(url)) { showToast('Enter a valid HTTPS GitHub repository URL (github.com/owner/repository)', 'error'); return; }
 
   const result = document.getElementById('analyzeResultRec');
   result.innerHTML = `
     <div style="text-align:center;padding:48px 20px;color:var(--text3)">
       <div class="spinner" style="width:40px;height:40px;margin:0 auto 16px;border-width:3px"></div>
-      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Scanning repository…</div>
-      <div style="font-size:12px">Fetching commit history, tech stack, code complexity</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Preparing demo estimate…</div>
+      <div style="font-size:12px">This demo does not fetch or analyze GitHub repository data.</div>
     </div>`;
 
   setTimeout(() => {
@@ -1530,13 +2151,13 @@ function analyzeProjectRec() {
     const verdict = passed ? '✓ Credible Developer' : score >= 50 ? '⚠ Moderate Credibility' : '✕ Low Credibility';
     result.innerHTML = `
       <div style="animation:fadeIn .4s ease;text-align:center">
-        <div style="font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px">Credibility Report — ${name}</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px">Demo estimate — ${escapeHTML(name)}</div>
         <div style="width:100px;height:100px;border-radius:50%;background:conic-gradient(${color} ${score*3.6}deg,var(--bg2) 0);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto 16px">
           <div style="position:absolute;inset:8px;border-radius:50%;background:var(--card2)"></div>
           <div style="position:relative;font-size:22px;font-weight:900;color:${color};font-family:'JetBrains Mono',monospace">${score}</div>
         </div>
         <div style="font-size:18px;font-weight:900;color:${color};margin-bottom:6px">${verdict}</div>
-        <div style="font-size:13px;color:var(--text2);margin-bottom:16px">${lang} project · ${url.slice(0,30)}…</div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:16px">${escapeHTML(lang)} project · ${escapeHTML(url.slice(0,30))}…</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left">
           ${[
             {l:'Language', v:lang, c:'var(--cyan)'},
@@ -1659,7 +2280,18 @@ function showToast(msg, type = 'info') {
   const toast = document.createElement('div');
   toast.className = `toast toast-${type}`;
   const icon = type === 'success' ? '✓' : type === 'error' ? '⚠' : 'ℹ';
-  toast.innerHTML = `<span>${icon}</span><span style="flex:1">${msg}</span><span class="toast-close" onclick="this.parentElement.remove()">×</span>`;
+  const iconEl = document.createElement('span');
+  iconEl.textContent = icon;
+  const messageEl = document.createElement('span');
+  messageEl.style.flex = '1';
+  messageEl.textContent = msg;
+  const closeEl = document.createElement('button');
+  closeEl.type = 'button';
+  closeEl.className = 'toast-close';
+  closeEl.setAttribute('aria-label', 'Dismiss notification');
+  closeEl.textContent = '×';
+  closeEl.addEventListener('click', () => toast.remove());
+  toast.append(iconEl, messageEl, closeEl);
   container.appendChild(toast);
   setTimeout(() => toast.remove(), 4000);
 }
@@ -1787,6 +2419,7 @@ function completeSignIn(name, role) {
 }
 
 function showRoleView(role) {
+  updateRoleNavigation();
   const devView = document.getElementById('developerView');
   const recView = document.getElementById('recruiterView');
   if (role === 'recruiter') {
@@ -1815,12 +2448,19 @@ function updateHeaderUser(name, role) {
   const el = document.createElement('div');
   el.id = 'headerUser';
   el.style.cssText = 'display:flex;align-items:center;gap:8px;cursor:pointer';
-  el.innerHTML = `
-    <div style="width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.15);border:1.5px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--green)">${name.slice(0,2).toUpperCase()}</div>
-    <div style="font-size:12px;line-height:1.3">
-      <div style="font-weight:700;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${name}</div>
-      <div style="color:var(--green);font-size:11px;font-weight:600">${role}</div>
-    </div>`;
+  const avatar = document.createElement('div');
+  avatar.style.cssText = 'width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.15);border:1.5px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--green)';
+  avatar.textContent = name.slice(0,2).toUpperCase();
+  const info = document.createElement('div');
+  info.style.cssText = 'font-size:12px;line-height:1.3';
+  const nameEl = document.createElement('div');
+  nameEl.style.cssText = 'font-weight:700;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
+  nameEl.textContent = name;
+  const roleEl = document.createElement('div');
+  roleEl.style.cssText = 'color:var(--green);font-size:11px;font-weight:600';
+  roleEl.textContent = role;
+  info.append(nameEl, roleEl);
+  el.append(avatar, info);
   el.onclick = openSettings;
   ctrl.insertBefore(el, ctrl.firstChild);
 }
